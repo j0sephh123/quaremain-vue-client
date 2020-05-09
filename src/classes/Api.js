@@ -31,7 +31,6 @@ class API {
       params: stock,
     })
   }
-
 }
 
 export const api = new API();

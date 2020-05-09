@@ -2,7 +2,12 @@
   <div>
     <div class="form-group form-row">
       <div class="col-6">
-        <input v-model="fields['name']" class="form-control" type="text" placeholder="name" />
+        <input 
+          v-model="fields['name']" 
+          class="form-control" 
+          type="text" 
+          placeholder="name" 
+        />
       </div>
       <div class="col-6">
         <input
@@ -52,7 +57,11 @@
       </div>
     </div>
     <div class="form-group">
-      <button @click="submit()" class="btn btn-secondary btn-block">Submit</button>
+      <button 
+        @click="$store.dispatch('submit', fields)" 
+        class="btn btn-secondary btn-block">
+        Submit
+      </button>
     </div>
   </div>
 </template>

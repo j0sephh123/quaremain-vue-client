@@ -12,12 +12,10 @@
         <th>Actions</th>
       </tr>
 
-      <template v-for="stock in stocks[this.$store.state.activeTab]">
+      <template v-for="stock in stocks">
         <table-row
           :key="stock.id"
           :stock="stock"
-          :updateStockItem="updateStockItem"
-          :removeStockItem="removeStockItem"
         ></table-row>
       </template>
       
@@ -43,14 +41,11 @@ export default {
       type: Function,
     },
     stocks: {
-      type: Object,
+      type: Array,
     },
     search: {
       type: String,
     },
-    get: {
-      type: Function,
-    }
   },
   computed: {
     // activeStocks() {
@@ -67,7 +62,8 @@ export default {
 
   },
   mounted() {
-    this.get(this.$store.state.activeTab)
+    // console.log(this.stocks);
+    // this.get(this.$store.state.activeTab)
   },
   updated() {
     console.log('table updated');

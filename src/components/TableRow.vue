@@ -9,7 +9,7 @@
     <td v-if="this.$store.state.activeTab === 'water'">{{ stock.millilitrePerPackage }}ML</td>
     <td class="actions">
       <i @click="updateStockItem(stock, this.$store.state.activeTab)" class="fas fa-edit fa-2x"></i>
-      <i @click="removeStockItem(stock.id, this.$store.state.activeTab)" class="fas fa-trash-alt fa-2x"></i>
+      <i @click="$store.dispatch('removeStock', stock.id)" class="fas fa-trash-alt fa-2x"></i>
     </td>
   </tr>
 </template>
@@ -18,8 +18,6 @@
 export default {
   props: [
     'stock',
-    'updateStockItem',
-    'removeStockItem',
   ],
 }
 </script>
