@@ -1,5 +1,8 @@
 <template>
-  <div class="experimental">
+  <div style="display: flex;">
+    
+    <sidebar-component></sidebar-component>
+    <div class="experimental">
 
         <div class="flex my-2">
           <div class="form-group search_box">
@@ -136,14 +139,17 @@
           </thead>
         </table>
       </div>
+  </div>
 </template>
 
 <script>
+import SidebarComponent from './components/Sidebar'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    
+    SidebarComponent
   },
   data() {
     return {
@@ -153,7 +159,7 @@ export default {
         },
         startStock: "food",
         initialFields: {
-          "name"                   : "",
+          "name"                   : "qwr",
           "stock-amount"           : "2",
           "cost-per-package"       : "3",
           "description"            : "4",
@@ -165,7 +171,7 @@ export default {
         show: true,
       },
       fields: {
-        "name"                   : "",
+        "name"                   : "qrw",
         "stock-amount"           : "2",
         "cost-per-package"       : "3",
         "description"            : "4",
@@ -213,30 +219,35 @@ export default {
         submitData["calories-per-package"] = this.fields["calories-per-package"];
       }
 
-      fetch(`http://localhost:5000/api/${this.config.api.ver}/app/list/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(submitData)
-      }).then(resp => {
-        if(resp.status === 200) {
-          console.log(resp);
-          this.fields = this.config.initialFields;
-          // this.form.show = false;
-          this.loaded = false;
-          this.get(this.activeStock)
-        } else {
-          console.log('submit error');
-        }
-      }).catch(err => {
-        console.log(err);
-      })
+      // fetch(`http://localhost:5000/api/${this.config.api.ver}/app/list/create`, {
+      //   method: "POST",
+      //   headers: new Headers(),
+      //   body: JSON.stringify(submitData)
+      // }).then(resp => {
+      //   return resp.json()
+      //   // if(resp.status === 200) {
+      //   //   console.log(resp);
+      //   //   this.fields = this.config.initialFields;
+      //   //   // this.form.show = false;
+      //   //   this.loaded = false;
+      //   //   this.get(this.activeStock)
+      //   // } else {
+      //   //   console.log('submit error');
+      //   // }
+      // }).then(res => {
+      //   console.log(res);
+      // })
       
+      axios.get(`http://localhost:5000/api/${this.config.api.ver}/app/list/create`, {
+        data: submitData
+      })
+      .then(r => {
+        console.log(r);
+      })
+
     },
     removeStockItem(id, collection) {
-      fetch(`http://localhost:5000/api/${this.config.api.ver}/app/list/delete/${id}?stock-category=${collection}`)
-        .then(result => result.json())
+      axios(`http://localhost:5000/api/${this.config.api.ver}/app/list/delete/${id}?stock-category=${collection}`)
         .then(data => {
           console.log(data);
           this.get(collection);
@@ -254,22 +265,29 @@ export default {
     },
     get(collection) {
       console.log('this.get');
-      fetch(`http://localhost:5000/api/${this.config.api.ver}/app/list/${collection}`)
-        .then(result => result.json())
+      axios
+        .get(`http://localhost:5000/api/${this.config.api.ver}/app/list/${collection}`)
         .then(data => {
           console.log(data);
-          if(data.status === 200) {
-            this.loaded = true;
-            this.stocks[collection] = data.stocks;
-          } else {
-            console.log('get error');
-          }
+          this.loaded = true;
+          this.stocks[collection] = data.data.stocks;
         })
-        .catch(error => {
-          console.log(error);
-        })
-      }
+      // fetch(`http://localhost:5000/api/${this.config.api.ver}/app/list/${collection}`)
+      //   .then(result => result.json())
+      //   .then(data => {
+      //     console.log(data);
+      //     if(data.status === 200) {
+      //       this.loaded = true;
+      //       this.stocks[collection] = data.stocks;
+      //     } else {
+      //       console.log('get error');
+      //     }
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   })
     }
+  }
 }
 </script>
 
