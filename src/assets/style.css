@@ -165,8 +165,15 @@ td {
   transition: all 0.4s;
   color: var(--secondary);
 }
+.experimental .fa-edit:hover {
+  cursor: pointer;
+  transform: scale(1.2) translateY(-2px);
+  transition: all 0.4s;
+  color: var(--primary_hover);
+}
 .experimental td.actions {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 .experimental .search_box {
   position: relative;

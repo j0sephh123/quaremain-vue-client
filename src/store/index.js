@@ -64,13 +64,24 @@ export default new Vuex.Store({
       } else {
         console.log('error');
       }
+    },
+    async updateStock({state, dispatch}, {stock, name}) {
+      stock['name'] = name;
+      stock['stock-category'] = state.activeTab;
+
+      let result = await api.update(stock);
+
+      if(result.status === 200) {
+        dispatch('loadStocks', state.activeTab)
+      } else {
+        console.log('error');
+      }
     }
   },
   getters: {
     activeTab: state => state.activeTab,
     showForm: state => state.showForm,
     stocks: state => {
-      console.log('getters');
       return state.stocks[state.activeTab]
     },
   }

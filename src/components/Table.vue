@@ -66,7 +66,6 @@ export default {
     // this.get(this.$store.state.activeTab)
   },
   updated() {
-    console.log('table updated');
   }
 };
 </script>

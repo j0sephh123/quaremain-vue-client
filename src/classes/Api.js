@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import axios from 'axios';
 
 const port = `5000`;
@@ -26,9 +28,27 @@ class API {
     });
   }
 
-  async update(id, stock) {
+
+  /** */
+  async update(stock) {
+    const params = {
+      'name': stock['name'],
+      'description': stock['description'],
+      'stock-category': stock['stock-category'],
+      'stock-amount': stock['amount'],
+      'cost-per-package': stock['costPerPackage'],
+    }
+
+    if(stock['stock-category'] === 'food') {
+      params['calories-per-package'] = stock['caloriesPerPackage'];
+    } else if (stock['stock-category'] === 'water') {
+      params['millilitre-per-package'] = stock['millilitrePerPackage'];
+    }
+    
+    let id = stock.id;
+
     return axiosInstance.get(`list/update/${id}`, {
-      params: stock,
+      params,
     })
   }
 }
