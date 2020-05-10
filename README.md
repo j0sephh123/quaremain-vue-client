@@ -1,24 +1,27 @@
-# client
+# Quaremain's Vue Client
 
-## Project setup
-```
-yarn install
-```
+Front-end desktop client (webview) for ![https://github.com/momozor/quaremain].
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Building & Running
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### Hard Dependencies
+- npm or yarn
 
-### Lints and fixes files
-```
-yarn lint
-```
+### Install Soft Dependencies
+- yarn install (or npm install)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Serve development files
+- yarn serve (or npm run serve)
+
+### Build production files
+- yarn build (or npm run build)
+
+## Maintainers
+- Author - [j0sephh123](https://github.com/j0sephh123)
+- Co-maintainer - [Momozor](https://github.com/momozor)
+
+
+## License
+
+This front-end client project for Quaremain is released under the MIT
+license. Please see COPYING file for more details.
