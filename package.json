@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
+    "vue-sweetalert2": "^3.0.5",
     "vuex": "^3.3.0"
   },
   "devDependencies": {

@@ -18,10 +18,13 @@
         />
       </div>
     </div>
+
+
+
     <div class="form-group form-row">
       <div class="col-4">
         <input
-          v-model="fields['cost-per-package']"
+          v-model="fields['costPerPackage']"
           placeholder="cost per package"
           class="form-control"
           type="number"
@@ -31,7 +34,7 @@
       </div>
       <div class="col-4">
         <input
-          v-model="fields['stock-amount']"
+          v-model="fields['stockAmount']"
           placeholder="amount"
           class="form-control"
           type="number"
@@ -41,7 +44,7 @@
 
       <div v-if="activeTab === 'food'" class="col-4">
         <input
-          v-model="fields['calories-per-package']"
+          v-model="fields['caloriesPerPackage']"
           placeholder="Calories per package"
           class="form-control"
           type="number"
@@ -49,12 +52,13 @@
       </div>
       <div v-if="activeTab === 'water'" class="col-4">
         <input
-          v-model="fields['millilitre-per-package']"
+          v-model="fields['millilitrePerPackage']"
           placeholder="Millilitre per package"
           class="form-control"
           type="number"
         />
       </div>
+
     </div>
     <div class="form-group">
       <button 
@@ -74,13 +78,19 @@ export default {
   data:() => ({
     fields: {
       "name"                   : "qrw",
-      "stock-amount"           : "2",
-      "cost-per-package"       : "3",
+      "stockAmount"           : "2",
+      "costPerPackage"       : "3",
       "description"            : "4",
-      "millilitre-per-package" : "5",
-      "calories-per-package"   : "6",
+      "millilitrePerPackage" : "5",
+      "caloriesPerPackage"   : "6",
     },
-  })
+    thirdRow: [
+      
+    ],
+  }),
+  computed: {
+
+  },
 };
 </script>
 

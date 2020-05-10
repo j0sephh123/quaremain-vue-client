@@ -30,6 +30,7 @@
 
         <hr >
 
+
         <ul class="nav nav-tabs">
           <li 
             :key="category"
@@ -87,6 +88,10 @@ export default {
     }
   },
   methods: {
+    showAlert() {
+      // Use sweetalert2
+      this.$swal('Hello Vue world!!!');
+    },
   }
 }
 </script>

@@ -15,18 +15,23 @@ export class InputParser {
    */
   static submitData(fields, stock) {
     const data = {
-      "stock-category"         : stock,
       "name"                   : fields['name'],
-      "stock-amount"           : fields['stock-amount'],
-      "cost-per-package"       : fields['cost-per-package'],
       "description"            : fields['description'],
+      "stockCategory"         : stock,
+      "stockAmount"           : fields['stockAmount'],
+      "costPerPackage"       : fields['costPerPackage'],
+      // "stock-category"         : stock,
+      // "stock-amount"           : fields['stock-amount'],
+      // "cost-per-package"       : fields['cost-per-package'],
     }
 
     if(stock === "water") {
-      data["millilitre-per-package"] = fields["millilitre-per-package"];
+      // data["millilitre-per-package"] = fields["millilitre-per-package"];
+      data["millilitrePerPackage"] = fields["millilitrePerPackage"];
     }
     if(stock === "food") {
-      data["calories-per-package"] = fields["calories-per-package"];
+      // data["calories-per-package"] = fields["calories-per-package"];
+      data["caloriesPerPackage"] = fields["caloriesPerPackage"];
     }
 
     return data;

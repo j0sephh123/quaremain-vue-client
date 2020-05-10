@@ -27,7 +27,13 @@ export default new Vuex.Store({
     },
     updateSearch(state, value) {
       state.search = value;
-    }
+    },
+    // addNewStock(state, stock) {
+    //   state.stocks = {
+    //     ...state.stocks,
+    //     [state.activeTab]: [...state[state.activeTab], stock]
+    //   }
+    // }
   },
   // state, rootState, commit, dispatch, getters, rootGetters
   actions: {
@@ -49,6 +55,7 @@ export default new Vuex.Store({
       let submitData = InputParser.submitData(fields, state.activeTab);
 
       let result = await api.create(submitData);
+      console.log(result);
 
       // for now we get only result.status, so, we fetch the whole
       // dataset again in the future probably just get the newly created
@@ -71,7 +78,7 @@ export default new Vuex.Store({
     },
     async updateStock({state, dispatch}, {stock, name}) {
       stock['name'] = name;
-      stock['stock-category'] = state.activeTab;
+      stock['stockCategory'] = state.activeTab;
 
       let result = await api.update(stock);
 
