@@ -98,31 +98,27 @@ export default {
   },
   data:() => ({
     fields: {
-      "name"                   : "",
-      "stockAmount"            : "",
-      "costPerPackage"         : "",
-      "description"            : "",
-      "millilitrePerPackage"   : "",
-      "caloriesPerPackage"     : "",
+      "name"                   : "test",
+      "stockAmount"            : "1",
+      "costPerPackage"         : "1",
+      "description"            : "descr",
+      "millilitrePerPackage"   : "1",
+      "caloriesPerPackage"     : "1",
     },
     checked: false,
     showDescr: false,
   }),
   methods: {
     toggle() {
-      console.log('hi');
       this.checked = !this.checked;
       this.showDescr = !this.showDescr;
     }
   },
   computed: {
     colWidth() {
-      let width = 6;
-      if(this.activeTab === "food" || this.activeTab === "water") {
-        width = 4;
-      } 
+      let foodOrWater = this.activeTab === "food" || this.activeTab === "water";
       
-      return width;
+      return foodOrWater ? 4 : 6;
     }
   },
 };
@@ -139,5 +135,9 @@ export default {
 .description_toggle label:hover {
   color: var(--primary);
   cursor: pointer;
+}
+.btn {
+  font-weight: 600;
+  font-size: 1.2em;
 }
 </style>

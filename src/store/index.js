@@ -14,6 +14,10 @@ export default new Vuex.Store({
     showForm: false,
     stocks: {},
     search: "",
+    alert: {
+      a: 5,
+      active: false,
+    }
   },
   mutations: {
     changeCategory(state, payload) {
@@ -28,6 +32,13 @@ export default new Vuex.Store({
     updateSearch(state, value) {
       state.search = value;
     },
+    setAlert(state, { active }) {
+      console.log('set alert');
+      state.alert = {
+        ...state.alert,
+        active,
+      }
+    }
     // addNewStock(state, stock) {
     //   state.stocks = {
     //     ...state.stocks,
@@ -50,18 +61,25 @@ export default new Vuex.Store({
       // I know that this needs refactoring, since it fires twice
       // but it finally works
     },
-    async submit({state, dispatch}, fields) {
+    async submit({state, dispatch, commit}, fields) {
       // parse the data for the different types of stocks
       let submitData = InputParser.submitData(fields, state.activeTab);
 
       let result = await api.create(submitData);
-      console.log(result);
 
       // for now we get only result.status, so, we fetch the whole
       // dataset again in the future probably just get the newly created
       // stock and add it do the existing stocks
       if(result.status === 200) {
-        dispatch('loadStocks', state.activeTab)
+        let exists = result.data.status === 404;
+        if (!exists) {
+          dispatch('loadStocks', state.activeTab);
+          return;
+        };
+
+        commit('setAlert', ({ active: true }))
+        
+        
       } else {
         console.log('error');
       }
@@ -105,6 +123,10 @@ export default new Vuex.Store({
 
       return stocks[activeTab]
     },
-    search: ({ search }) => search
+    search: ({ search }) => search,
+    alert: ({ alert }) => {
+      console.log('asd');
+      return alert
+    },
   }
 });
