@@ -11,7 +11,7 @@
               v-model="search"
               id="search"
               type="text"
-              placeholder="notworking"
+              placeholder="Search"
               class="pl-5 form-control" />
           </div>
           <div class="form-group">
@@ -19,7 +19,7 @@
               @click="$store.commit('toggleShowForm')"
               id="create" 
               class="btn btn-secondary"
-              >Create {{ activeTab }}
+              >Create {{ activeTab }} {{ search }}
             </button>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default {
     CreateStock: () => import('./components/CreateStock'),
   },
   data: () => ({
-    search: "",
+    
   }),
   mounted() {
     // let result = (await api.get('food')).data;
@@ -77,30 +77,16 @@ export default {
       showForm: 'showForm',
       stocks: 'stocks',
     }),
+    search: {
+      get() {
+        return this.$store.state.search
+      },
+      set(value) {
+        this.$store.commit('updateSearch', value)
+      }
+    }
   },
   methods: {
-
-
-
-
-
-    // },
-    // updateStockItem(stock) {
-    //   let id = 1;
-    //   stock = {
-    //     'stock-category': 'food',
-    //     'stock-amount': 1,
-    //     'cost-per-package': 424,
-    //     'calories-per-package': 393,
-    //     'description': "asd",
-    //     'name': "demo",
-    //   }
-
-    //   api.update(id, stock).then(data => {
-    //     console.log(data);
-    //   })
-    // },
-
   }
 }
 </script>

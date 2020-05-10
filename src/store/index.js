@@ -13,6 +13,7 @@ export default new Vuex.Store({
     activeTab: "food",
     showForm: true,
     stocks: {},
+    search: "",
   },
   mutations: {
     changeCategory(state, payload) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     loadStocks(state, stocks) {
       state.stocks = {...state.stocks, [state.activeTab]: stocks}
+    },
+    updateSearch(state, value) {
+      state.search = value;
     }
   },
   // state, rootState, commit, dispatch, getters, rootGetters
@@ -79,10 +83,21 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    activeTab: state => state.activeTab,
-    showForm: state => state.showForm,
-    stocks: state => {
-      return state.stocks[state.activeTab]
+    activeTab: ({ activeTab }) => activeTab,
+    showForm: ({ showForm }) => showForm,
+    stocks: ({ stocks, search, activeTab }) => {
+
+      if(search.length > 0) {
+        return stocks[activeTab].filter(item => {
+          if(item.name.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+            return true;
+          }
+          return false
+        })
+      }
+
+      return stocks[activeTab]
     },
+    search: ({ search }) => search
   }
 });
