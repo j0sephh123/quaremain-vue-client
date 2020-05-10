@@ -10,6 +10,10 @@ body {
   --primary_hover: #5eb69d;
 }
 
+.bold {
+  font-weight: 600;
+}
+
 .flex {
   display: flex;
   justify-content: space-between;

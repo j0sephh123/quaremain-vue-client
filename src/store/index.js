@@ -11,7 +11,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     activeTab: "food",
-    showForm: true,
+    showForm: false,
     stocks: {},
     search: "",
   },

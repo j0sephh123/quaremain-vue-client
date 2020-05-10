@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="form-group form-row">
-      <div class="col-6">
+      <div class="col-9">
+        <label for="name" class="bold">Name</label>
         <input 
           v-model="fields['name']" 
           class="form-control" 
@@ -9,20 +10,37 @@
           placeholder="name" 
         />
       </div>
-      <div class="col-6">
-        <input
+      <div class="description_toggle col-3">
+        <div class="custom-control custom-switch">
+          <input 
+            id="toggleDecription"
+            type="checkbox" 
+            @change="toggle()"
+            class="custom-control-input" 
+            :checked="checked">
+          <label 
+            for="toggleDecription"
+            class="bold custom-control-label">Toggle description</label>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="showDescr" class="form-group">
+      <div class="p-0 col-12">
+        <label class="bold" for="description">Decription</label>
+        <textarea 
           v-model="fields['description']"
-          class="form-control"
-          type="text"
           placeholder="description"
-        />
+          class="form-control" 
+          cols="30" 
+          rows="3"></textarea>
       </div>
     </div>
 
 
-
     <div class="form-group form-row">
-      <div class="col-4">
+      <div :class="'col-' + colWidth">
+        <label class="bold">Cost per Package</label>
         <input
           v-model="fields['costPerPackage']"
           placeholder="cost per package"
@@ -32,7 +50,8 @@
           min="0"
         />
       </div>
-      <div class="col-4">
+      <div :class="'col-' + colWidth">
+        <label class="bold">Amount</label>
         <input
           v-model="fields['stockAmount']"
           placeholder="amount"
@@ -42,7 +61,8 @@
         />
       </div>
 
-      <div v-if="activeTab === 'food'" class="col-4">
+      <div v-if="activeTab === 'food'" :class="'col-' + colWidth">
+        <label class="bold">Calories per package</label>
         <input
           v-model="fields['caloriesPerPackage']"
           placeholder="Calories per package"
@@ -50,7 +70,8 @@
           type="number"
         />
       </div>
-      <div v-if="activeTab === 'water'" class="col-4">
+      <div v-if="activeTab === 'water'" :class="'col-' + colWidth">
+        <label class="bold">Millilitre per package</label>
         <input
           v-model="fields['millilitrePerPackage']"
           placeholder="Millilitre per package"
@@ -77,22 +98,46 @@ export default {
   },
   data:() => ({
     fields: {
-      "name"                   : "qrw",
-      "stockAmount"           : "2",
-      "costPerPackage"       : "3",
-      "description"            : "4",
-      "millilitrePerPackage" : "5",
-      "caloriesPerPackage"   : "6",
+      "name"                   : "",
+      "stockAmount"            : "",
+      "costPerPackage"         : "",
+      "description"            : "",
+      "millilitrePerPackage"   : "",
+      "caloriesPerPackage"     : "",
     },
-    thirdRow: [
-      
-    ],
+    checked: false,
+    showDescr: false,
   }),
+  methods: {
+    toggle() {
+      console.log('hi');
+      this.checked = !this.checked;
+      this.showDescr = !this.showDescr;
+    }
+  },
   computed: {
-
+    colWidth() {
+      let width = 6;
+      if(this.activeTab === "food" || this.activeTab === "water") {
+        width = 4;
+      } 
+      
+      return width;
+    }
   },
 };
 </script>
 
-<style>
+<style scoped>
+.description_toggle {
+  display: flex;
+  align-items: flex-end;
+}
+.description_toggle .custom-control {
+  padding-bottom: 6px;
+}
+.description_toggle label:hover {
+  color: var(--primary);
+  cursor: pointer;
+}
 </style>
