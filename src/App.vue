@@ -3,7 +3,6 @@
     
     <sidebar-component></sidebar-component>
     <div class="experimental container pt-2 px-5 ml-2">
-
       <div class="flex my-2">
         <div class="form-group search_box">
           <i class="fas fa-search fa-lg"></i>
@@ -30,7 +29,6 @@
 
       <hr >
 
-
       <ul class="nav nav-tabs">
         <li 
           :key="category"
@@ -50,6 +48,11 @@
       ></table-component>
     </div>
 
+    <!-- modal testing -->
+    <template v-if="updateObject.active">
+      <update-modal></update-modal>
+    </template>
+
   </div>
 </template>
 
@@ -62,24 +65,22 @@ export default {
     SidebarComponent: () => import ('./components/Sidebar'),
     TableComponent: () => import ('./components/Table'),
     CreateStock: () => import('./components/CreateStock'),
+    UpdateModal: () => import('./components/UpdateModal'),
   },
-  data: () => ({
-    
-  }),
+
   mounted() {
-    console.log(this.alert);
     // let result = (await api.get('food')).data;
     this.$store.dispatch('loadStocks', "food")
   },
   updated() {
-    // console.log(this.stocks);
+    // console.log('updated');
   },
   computed: {
     ...mapGetters({
       activeTab: 'activeTab',
       showForm: 'showForm',
       stocks: 'stocks',
-      alert: 'alert',
+      updateObject: 'updateObject',
     }),
     search: {
       get() {
@@ -91,10 +92,6 @@ export default {
     }
   },
   methods: {
-    showAlert() {
-      // Use sweetalert2
-      this.$swal('Hello Vue world!!!');
-    },
   }
 }
 </script>

@@ -8,16 +8,20 @@ import { InputParser } from '../classes/InputParser';
 
 Vue.use(Vuex);
 
+const initialUpdateObject = {
+  field: null,
+  inputType: null,
+  stock: null,
+  active: false,
+}
+
 export default new Vuex.Store({
   state: {
     activeTab: "food",
     showForm: false,
     stocks: {},
     search: "",
-    alert: {
-      a: 5,
-      active: false,
-    }
+    updateObject: initialUpdateObject,
   },
   mutations: {
     changeCategory(state, payload) {
@@ -32,19 +36,25 @@ export default new Vuex.Store({
     updateSearch(state, value) {
       state.search = value;
     },
-    setAlert(state, { active }) {
-      console.log('set alert');
-      state.alert = {
-        ...state.alert,
-        active,
+    setUpdateObject(state, updateObject) {
+      if(!updateObject) {
+        state.updateObject = initialUpdateObject;
+        return;
+      }
+
+      state.updateObject = {
+        active: true,
+        ...updateObject
+      };
+    },
+
+    // unused
+    addNewStock(state, stock) {
+      state.stocks = {
+        ...state.stocks,
+        [state.activeTab]: [...state[state.activeTab], stock]
       }
     }
-    // addNewStock(state, stock) {
-    //   state.stocks = {
-    //     ...state.stocks,
-    //     [state.activeTab]: [...state[state.activeTab], stock]
-    //   }
-    // }
   },
   // state, rootState, commit, dispatch, getters, rootGetters
   actions: {
@@ -75,9 +85,10 @@ export default new Vuex.Store({
         if (!exists) {
           dispatch('loadStocks', state.activeTab);
           return;
-        };
+        } else {
+          console.log('exists');
+        }
 
-        commit('setAlert', ({ active: true }))
         
         
       } else {
@@ -94,8 +105,8 @@ export default new Vuex.Store({
         console.log('error');
       }
     },
-    async updateStock({state, dispatch}, {stock, name}) {
-      stock['name'] = name;
+    async updateStock({state, dispatch}, {stock, field, value}) {
+      stock[field] = value;
       stock['stockCategory'] = state.activeTab;
 
       let result = await api.update(stock);
@@ -105,7 +116,16 @@ export default new Vuex.Store({
       } else {
         console.log('error');
       }
-    }
+    },
+    update({dispatch, state, commit}, value) {
+      let obj = {
+        stock: state.updateObject.stock,
+        field: state.updateObject.field,
+        value,
+      }
+      commit('setUpdateObject', null);
+      dispatch('updateStock', obj);
+    },  
   },
   getters: {
     activeTab: ({ activeTab }) => activeTab,
@@ -124,9 +144,9 @@ export default new Vuex.Store({
       return stocks[activeTab]
     },
     search: ({ search }) => search,
-    alert: ({ alert }) => {
-      console.log('asd');
-      return alert
+    updateObject: state => {
+      console.log('alert getter, we want to see this message');
+      return state.updateObject
     },
   }
 });

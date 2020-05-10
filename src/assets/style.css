@@ -13,7 +13,9 @@ body {
 .bold {
   font-weight: 600;
 }
-
+.c {
+  cursor: pointer;
+}
 .flex {
   display: flex;
   justify-content: space-between;
@@ -168,16 +170,6 @@ td {
   transform: scale(1.2) translateY(-2px);
   transition: all 0.4s;
   color: var(--secondary);
-}
-.experimental .fa-edit:hover {
-  cursor: pointer;
-  transform: scale(1.2) translateY(-2px);
-  transition: all 0.4s;
-  color: var(--primary_hover);
-}
-.experimental td.actions {
-  display: flex;
-  justify-content: space-between;
 }
 .experimental .search_box {
   position: relative;
