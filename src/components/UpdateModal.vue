@@ -11,11 +11,11 @@
             class="bold"
             :for="updateObject.field">{{updateObject.field}}</label>
           <input 
+            autofocus
             :id="updateObject.field"
             :type="updateObject.inputType"
             class="form-control"
             v-model="updateVal"
-            
             >
         </div>
         <div class="row">

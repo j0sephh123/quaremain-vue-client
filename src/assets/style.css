@@ -180,6 +180,8 @@ td {
 .experimental .actions {
   display: flex;
   justify-content: space-around;
+  border: none;
+  margin-top: 5px;
 }
 .experimental .search_box {
   position: relative;

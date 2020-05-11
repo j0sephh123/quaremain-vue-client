@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Index from './Index.vue'
 
 Vue.config.productionTip = false
 import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
@@ -14,8 +14,10 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 Vue.use(VueSweetalert2);
 
 import store from './store'
+import router from './router'
 
 new Vue({
+  router,
   store,
-  render: h => h(App),
+  render: h => h(Index),
 }).$mount('#app')

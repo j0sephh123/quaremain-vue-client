@@ -17,7 +17,7 @@
             type="checkbox" 
             @change="toggle()"
             class="custom-control-input" 
-            :checked="checked">
+            :showDescr="showDescr">
           <label 
             for="toggleDecription"
             class="bold custom-control-label">Toggle description</label>
@@ -83,7 +83,7 @@
     </div>
     <div class="form-group">
       <button 
-        @click="$store.dispatch('submit', fields)" 
+        @click="create()" 
         class="btn btn-secondary btn-block">
         Submit
       </button>
@@ -98,21 +98,27 @@ export default {
   },
   data:() => ({
     fields: {
-      "name"                   : "test",
-      "stockAmount"            : "1",
-      "costPerPackage"         : "1",
-      "description"            : "descr",
-      "millilitrePerPackage"   : "1",
-      "caloriesPerPackage"     : "1",
+      "name"                   : "",
+      "stockAmount"            : "",
+      "costPerPackage"         : "",
+      "description"            : "",
+      "millilitrePerPackage"   : "",
+      "caloriesPerPackage"     : "",
     },
-    checked: false,
     showDescr: false,
   }),
   methods: {
     toggle() {
-      this.checked = !this.checked;
       this.showDescr = !this.showDescr;
-    }
+    },
+    create() {
+      this.$store.dispatch('submit', this.fields);
+
+      // reset fields
+      for(let key in this.fields) {
+        this.fields[key] = "";
+      }
+    },
   },
   computed: {
     colWidth() {
@@ -120,6 +126,9 @@ export default {
       
       return foodOrWater ? 4 : 6;
     }
+  },
+  updated() {
+    console.log('create stock updated');
   },
 };
 </script>

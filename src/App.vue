@@ -1,7 +1,5 @@
 <template>
-  <div style="display: flex;">
-    
-    <sidebar-component></sidebar-component>
+  <div style="width: 100%;">
     <div class="experimental container pt-2 px-5 ml-2">
       <div class="flex my-2">
         <div class="form-group search_box">
@@ -52,7 +50,6 @@
     <template v-if="updateObject.active">
       <update-modal></update-modal>
     </template>
-
   </div>
 </template>
 
@@ -62,7 +59,6 @@ import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    SidebarComponent: () => import ('./components/Sidebar'),
     TableComponent: () => import ('./components/Table'),
     CreateStock: () => import('./components/CreateStock'),
     UpdateModal: () => import('./components/UpdateModal'),

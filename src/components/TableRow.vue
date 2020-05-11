@@ -14,12 +14,16 @@
       {{ stock.amount }}
     </td>
     <td>{{ stock.costPerPackage.toFixed(2) }}</td>
-    <td v-if="this.$store.state.activeTab === 'food'">{{ stock.caloriesPerPackage }}</td>
-    <td v-if="this.$store.state.activeTab === 'water'">{{ stock.millilitrePerPackage }}ML</td>
+    <td v-if="$store.state.activeTab === 'food'">{{ stock.caloriesPerPackage }}</td>
+    <td v-if="$store.state.activeTab === 'water'">{{ stock.millilitrePerPackage }}ML</td>
     <td class="actions">
-      <i 
-
-        class="fas fa-edit fa-lg"></i>
+      <router-link
+        tag="i"
+        class="fas fa-edit fa-lg"
+        :to="`/stocks/${$store.state.activeTab}/${stock.id}`"
+      >
+      </router-link>
+      
       <i 
         @click="$store.dispatch('removeStock', stock.id)" 
         class="fas fa-trash-alt fa-lg"></i>
@@ -55,7 +59,7 @@ export default {
     },
   },
   mounted() {
-    // console.log(this.stock);
+    console.log(this.stock);
   }
 }
 </script>
