@@ -4,11 +4,10 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Description</th>
         <th>Amount</th>
         <th>Total Cost</th>
-        <th v-if="this.$store.state.activeTab === 'water'">Total ML (Millilitre)</th>
-        <th v-if="this.$store.state.activeTab === 'food'">Total Potential Calories</th>
+        <th v-if="$store.state.activeTab === 'water'">Total ML (Millilitre)</th>
+        <th v-if="$store.state.activeTab === 'food'">Total Potential Calories</th>
         <th>Actions</th>
       </tr>
 
@@ -24,8 +23,6 @@
 </template>
 
 <script>
-// import { api } from '../classes/Api'
-
 export default {
   components: {
     TableRow: () => import('./TableRow'),

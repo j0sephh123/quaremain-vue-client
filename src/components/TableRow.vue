@@ -9,11 +9,6 @@
       </span>
     </td>
     <td 
-      class="c"
-      @click="onUpdateClick('description', 'text')">
-      {{ stock.description }}
-    </td>
-    <td 
       class="c" 
       @click="onUpdateClick('amount', 'number')">
       {{ stock.amount }}
@@ -22,7 +17,12 @@
     <td v-if="this.$store.state.activeTab === 'food'">{{ stock.caloriesPerPackage }}</td>
     <td v-if="this.$store.state.activeTab === 'water'">{{ stock.millilitrePerPackage }}ML</td>
     <td class="actions">
-      <i @click="$store.dispatch('removeStock', stock.id)" class="fas fa-trash-alt fa-lg"></i>
+      <i 
+
+        class="fas fa-edit fa-lg"></i>
+      <i 
+        @click="$store.dispatch('removeStock', stock.id)" 
+        class="fas fa-trash-alt fa-lg"></i>
     </td>
   </tr>
 </template>
