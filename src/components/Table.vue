@@ -40,19 +40,16 @@ export default {
     stocks: {
       type: Array,
     },
-    search: {
-      type: String,
-    },
   },
   computed: {
-    // activeStocks() {
-    //   if(this.search.length > 0) {
-    //     return this.stocks[this.activeStock].filter(item => (
-    //       item.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
-    //     ));
-    //   } 
-    //   return this.stocks[this.activeStock];
-    // }
+    search: {
+      get() {
+        return this.$store.state.search
+      },
+      set(value) {
+        this.$store.commit('updateSearch', value)
+      }
+    },
   },
   methods: {
 

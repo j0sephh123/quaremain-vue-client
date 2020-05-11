@@ -17,6 +17,7 @@ const initialUpdateObject = {
 
 export default new Vuex.Store({
   state: {
+    errors: null,
     activeTab: "food",
     showForm: false,
     stocks: {},
@@ -31,7 +32,7 @@ export default new Vuex.Store({
       state.showForm = !state.showForm;
     },
     loadStocks(state, stocks) {
-      state.stocks = {...state.stocks, [state.activeTab]: stocks}
+      state.stocks = {...state.stocks, [state.activeTab]: stocks};
     },
     updateSearch(state, value) {
       state.search = value;
@@ -47,7 +48,16 @@ export default new Vuex.Store({
         ...updateObject
       };
     },
-
+    setError(state, error) {
+      state.errors = error;
+      Vue.set(state, 'errors', error)
+      // state.errors = error
+      // Vue.set(state.errors, 'text', text)
+      // state.errors = {
+      //   ...state.errors,
+      //   text,
+      // }
+    },
     // unused
     addNewStock(state, stock) {
       state.stocks = {
@@ -86,11 +96,9 @@ export default new Vuex.Store({
           dispatch('loadStocks', state.activeTab);
           return;
         } else {
-          console.log('exists');
+          
+          commit('setError', result.data.error)
         }
-
-        
-        
       } else {
         console.log('error');
       }
@@ -117,7 +125,7 @@ export default new Vuex.Store({
         console.log('error');
       }
     },
-    update({dispatch, state, commit}, value) {
+    async update({dispatch, state, commit}, value) {
       let obj = {
         stock: state.updateObject.stock,
         field: state.updateObject.field,
@@ -144,9 +152,13 @@ export default new Vuex.Store({
       return stocks[activeTab]
     },
     search: ({ search }) => search,
-    updateObject: state => {
-      console.log('alert getter, we want to see this message');
-      return state.updateObject
+    updateObject: ({ updateObject }) => {
+      // console.log('updateObject getter, we want to see this message');
+      return updateObject
     },
+    errors: state => {
+      console.log(state.errors);
+      return state.errors
+    }
   }
 });

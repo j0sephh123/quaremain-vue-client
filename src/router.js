@@ -13,6 +13,16 @@ export default new Router({
       component: () => import('./App.vue'),
     },
     {
+      path: '/survival',
+      name: 'Survival days',
+      component: () => import('./views/Survival.vue'),
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: () => import('./views/Settings.vue'),
+    },
+    {
       path: '/about',
       name: 'About',
       component: () => import('./views/About.vue'),

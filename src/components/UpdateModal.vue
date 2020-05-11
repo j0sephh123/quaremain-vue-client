@@ -1,5 +1,7 @@
 <template>
   <div 
+    v-on:keydown.esc="closeModal()"
+    v-on:keydown.enter="$store.dispatch('update', updateVal)"
     class="modal-mask">
     <div 
       @click.self="closeModal()"

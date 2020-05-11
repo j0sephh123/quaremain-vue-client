@@ -25,7 +25,7 @@
       </router-link>
       
       <i 
-        @click="$store.dispatch('removeStock', stock.id)" 
+        @click="removeStock(stock.id)" 
         class="fas fa-trash-alt fa-lg"></i>
     </td>
   </tr>
@@ -42,6 +42,42 @@ export default {
     'stock',
   ],
   methods: {
+    removeStock(id) {
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'No, cancel!',
+        confirmButtonText: 'Yes, delete it!',
+      }).then(result => {
+        if(result.value) {
+          this.$store.dispatch('removeStock', id)
+        }
+      })
+      // swalWithBootstrapButtons.fire({
+      // }).then((result) => {
+      //   if (result.value) {
+      //     swalWithBootstrapButtons.fire(
+      //       'Deleted!',
+      //       'Your file has been deleted.',
+      //       'success'
+      //     )
+      //   } else if (
+      //     /* Read more about handling dismissals below */
+      //     result.dismiss === Swal.DismissReason.cancel
+      //   ) {
+      //     swalWithBootstrapButtons.fire(
+      //       'Cancelled',
+      //       'Your imaginary file is safe :)',
+      //       'error'
+      //     )
+      //   }
+      // })
+
+      // 
+
+    },
     onUpdateClick(field, inputType) {
 
       let updateObject = {
@@ -59,7 +95,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.stock);
+    // console.log(this.stock);
   }
 }
 </script>

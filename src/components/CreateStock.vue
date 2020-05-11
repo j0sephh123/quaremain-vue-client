@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-2">
     <div class="form-group form-row">
       <div class="col-9">
         <label for="name" class="bold">Name</label>
@@ -83,15 +83,18 @@
     </div>
     <div class="form-group">
       <button 
+        :a="errors"
         @click="create()" 
         class="btn btn-secondary btn-block">
-        Submit
+        Submit 
       </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: {
     activeTab: String,
@@ -120,7 +123,13 @@ export default {
       }
     },
   },
+  mounted() {
+    console.log(this.errors);
+  },
   computed: {
+    ...mapGetters({
+      errors: 'errors',
+    }),
     colWidth() {
       let foodOrWater = this.activeTab === "food" || this.activeTab === "water";
       
@@ -128,7 +137,16 @@ export default {
     }
   },
   updated() {
-    console.log('create stock updated');
+    if(this.errors) {
+      this.$swal({
+        title: this.errors,
+        icon: "error",
+      }).then(() => {
+        this.$store.commit('setError', null);
+      });
+    } else {
+      console.log('no');
+    }
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-3">
     <h1>About</h1>
       <hr>
       <p>Manage your basic survival resources like food and water

@@ -183,26 +183,12 @@ td {
   border: none;
   margin-top: 5px;
 }
-.experimental .search_box {
-  position: relative;
-}
 .experimental .nav-item {
   text-align: center;
   width: 25%;
   font-size: 1.6em;
   font-weight: 600;
 }
-.experimental .fa-search {
-  position: absolute;
-  left: 15px;
-  top: 12px;
-}
-.experimental #search {
-  width: 50%;
-  transition: all 0.4s;
-}
-.experimental #search:focus {
-  width: 100%;
-}
+
 
 /* experimental end */
