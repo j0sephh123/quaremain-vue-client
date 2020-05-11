@@ -51,8 +51,8 @@ class API {
     if(stock['stockCategory'] === 'food') {
       params['caloriesPerPackage'] = stock['caloriesPerPackage'];
       // params['calories-per-package'] = stock['caloriesPerPackage'];
-    } else if (stock['stock-category'] === 'water') {
-      params['millilitre-per-package'] = stock['millilitrePerPackage'];
+    } else if (stock['stockCategory'] === 'water') {
+      params['millilitrePerPackage'] = stock['millilitrePerPackage'];
     }
     
     let id = stock.id;
