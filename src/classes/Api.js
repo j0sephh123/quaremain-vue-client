@@ -18,6 +18,13 @@ class API {
     return axiosInstance.get(`list/${collection}`);
   }
 
+  async getOne(collection, id) {
+    let stocks = (await axiosInstance.get(`list/${collection}`)).data.stocks;
+    if(!stocks) return false;
+
+    return stocks.find(stock => stock.id === +id);
+  }
+
   async remove(id, collection) {
     return axiosInstance.get(`list/delete/${id}?stockCategory=${collection}`);
   }
@@ -28,24 +35,14 @@ class API {
     });
   }
 
-
   async update(stock) {
-    
-    // name: "1qrw"
-    // description: "4"
-    // stock-category: "food"
-    // stock-amount: 2
-    // cost-per-package: 6
-    // calories-per-package: 12
+
     const params = {
       'name': stock['name'],
       'description': stock['description'],
-      // 'stockCategory': stock['stockCategory'],
       'stockCategory': stock['stockCategory'],
-      // 'stock-amount': stock['amount'],
       'stockAmount': stock['amount'],
       'costPerPackage': stock['costPerPackage'],
-      // 'cost-per-package': stock['costPerPackage'],
     }
 
     if(stock['stockCategory'] === 'food') {
@@ -54,12 +51,8 @@ class API {
     } else if (stock['stockCategory'] === 'water') {
       params['millilitrePerPackage'] = stock['millilitrePerPackage'];
     }
-    
-    let id = stock.id;
 
-    console.log(params, id);
-
-    return axiosInstance.get(`list/update/${id}`, {
+    return axiosInstance.get(`list/update/${stock.id}`, {
       params,
     })
   }

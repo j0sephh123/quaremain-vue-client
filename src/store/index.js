@@ -4,26 +4,15 @@ import Vuex from 'vuex';
 import { api } from '../classes/Api';
 import { InputParser } from '../classes/InputParser';
 
+import { state, initialUpdateObject } from './state';
+import { getters } from './getters'
+
 // const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 Vue.use(Vuex);
 
-const initialUpdateObject = {
-  field: null,
-  inputType: null,
-  stock: null,
-  active: false,
-}
-
 export default new Vuex.Store({
-  state: {
-    errors: null,
-    activeTab: "food",
-    showForm: false,
-    stocks: {},
-    search: "",
-    updateObject: initialUpdateObject,
-  },
+  state,
   mutations: {
     changeCategory(state, payload) {
       state.activeTab = payload;
@@ -50,13 +39,16 @@ export default new Vuex.Store({
     },
     setError(state, error) {
       state.errors = error;
-      Vue.set(state, 'errors', error)
+      // Vue.set(state, 'errors', error)
       // state.errors = error
       // Vue.set(state.errors, 'text', text)
       // state.errors = {
       //   ...state.errors,
       //   text,
       // }
+    },
+    setOneStock(state, oneStock) {
+      state.oneStock = oneStock;
     },
     // unused
     addNewStock(state, stock) {
@@ -133,32 +125,15 @@ export default new Vuex.Store({
       }
       commit('setUpdateObject', null);
       dispatch('updateStock', obj);
-    },  
-  },
-  getters: {
-    activeTab: ({ activeTab }) => activeTab,
-    showForm: ({ showForm }) => showForm,
-    stocks: ({ stocks, search, activeTab }) => {
-
-      if(search.length > 0) {
-        return stocks[activeTab].filter(item => {
-          if(item.name.toLowerCase().indexOf(search.toLowerCase()) > -1) {
-            return true;
-          }
-          return false
-        })
+    },
+    async getOneStock({commit}, {stock,id}) {
+      let item = await api.getOne(stock, id);
+      if(!item) {
+        console.log('fetching error');
+        return;
       }
-
-      return stocks[activeTab]
+      commit('setOneStock', item)
     },
-    search: ({ search }) => search,
-    updateObject: ({ updateObject }) => {
-      // console.log('updateObject getter, we want to see this message');
-      return updateObject
-    },
-    errors: state => {
-      console.log(state.errors);
-      return state.errors
-    }
-  }
+  },
+  getters,
 });

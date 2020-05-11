@@ -7,11 +7,11 @@
     <h4>https://bootswatch.com/</h4>
     <div class="w-75 m-auto">
       <button
-        @click="themePage(theme)"
+        @click="current = theme"
         :class="'font-weight-bold btn btn-block ' + theme"
         v-for="theme in themes"
         :key="theme"
-      >{{ theme }}
+      >{{ theme }} {{ theme === current ? "current" : "" }}
       </button>
     </div>
   </div>
@@ -27,11 +27,6 @@ export default {
       "pulse",
     ],
   }),
-  methods: {
-    themePage(theme) {
-      window.open(`https://bootswatch.com/${theme}/`, "_blank")
-    }
-  }
 }
 </script>
 
