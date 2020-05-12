@@ -2,9 +2,10 @@
   <div v-if="stock" class="container mt-3">
     <h3>A page for a single stock of type {{stockType}}</h3>
     <div class="flex">
+
+      <!-- left -->
       <div class="box text-center">
         <i :class="'icon fa-2x ' + iconsMap[stockType]"></i>
-        
         <h3
           class="stock_item"
           @click="setCurrentField('name')"
@@ -24,6 +25,16 @@
           <i class="fas fa-angle-right fa-lg"></i>
         </div>
         <div 
+          @click="setCurrentField('costPerPackage')"
+          class="flex_between controls_container">
+          <div class="controls">
+            <div class="bold">Cost Per Package</div>
+            <div>{{stock.costPerPackage}}</div>
+          </div>
+          <i class="fas fa-angle-right fa-lg"></i>
+        </div>
+        <div 
+          v-if="stockType === 'food'"
           @click="setCurrentField('caloriesPerPackage')"
           class="flex_between controls_container">
           <div class="controls">
@@ -33,15 +44,18 @@
           <i class="fas fa-angle-right fa-lg"></i>
         </div>
         <div 
-          @click="setCurrentField('costPerPackage')"
+          v-if="stockType === 'water'"
+          @click="setCurrentField('millilitrePerPackage')"
           class="flex_between controls_container">
           <div class="controls">
-            <div class="bold">Cost Per Package</div>
-            <div>{{stock.costPerPackage}}</div>
+            <div class="bold">Millilitre Per Package</div>
+            <div>{{stock.millilitrePerPackage}}</div>
           </div>
           <i class="fas fa-angle-right fa-lg"></i>
         </div>
       </div>
+
+      <!-- right -->
       <div v-if="currentField" class="box">
         <div>
           <h3>{{currentField}}</h3>
