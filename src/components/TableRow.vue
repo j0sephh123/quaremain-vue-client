@@ -2,17 +2,9 @@
   <tr>
     <td>{{ stock.id }}</td>
     <td>
-      <span 
-        @click="onUpdateClick('name', 'text')"
-        class="c name">
-        {{ stock.name }}
-      </span>
+      <span @click="onUpdateClick('name', 'text')" class="c-hand name">{{ stock.name }}</span>
     </td>
-    <td 
-      class="c" 
-      @click="onUpdateClick('amount', 'number')">
-      {{ stock.amount }}
-    </td>
+    <td class="c-hand" @click="onUpdateClick('amount', 'number')">{{ stock.amount }}</td>
     <td>{{ stock.costPerPackage.toFixed(2) }}</td>
     <td v-if="$store.state.activeTab === 'food'">{{ stock.caloriesPerPackage }}</td>
     <td v-if="$store.state.activeTab === 'water'">{{ stock.millilitrePerPackage }}ML</td>
@@ -21,40 +13,36 @@
         tag="i"
         class="fas fa-edit fa-lg"
         :to="`/stocks/${$store.state.activeTab}/${stock.id}`"
-      >
-      </router-link>
-      
-      <i 
-        @click="removeStock(stock.id)" 
-        class="fas fa-trash-alt fa-lg"></i>
+      ></router-link>
+
+      <i @click="removeStock(stock.id)" class="fas fa-trash-alt fa-lg"></i>
     </td>
   </tr>
 </template>
 
 <script>
-
 export default {
   data: () => ({
     nameVal: "",
-    updating: false,
+    updating: false
   }),
-  props: [
-    'stock',
-  ],
+  props: ["stock"],
   methods: {
     removeStock(id) {
       this.$swal({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        cancelButtonText: 'No, cancel!',
-        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: "No, cancel!",
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: "Yes, delete it!",
+        confirmButtonColor: "#d33",
       }).then(result => {
-        if(result.value) {
-          this.$store.dispatch('removeStock', id)
+        if (result.value) {
+          this.$store.dispatch("removeStock", id);
         }
-      })
+      });
       // swalWithBootstrapButtons.fire({
       // }).then((result) => {
       //   if (result.value) {
@@ -75,29 +63,26 @@ export default {
       //   }
       // })
 
-      // 
-
+      //
     },
     onUpdateClick(field, inputType) {
-
       let updateObject = {
         field,
         inputType,
-        stock: this.stock,
-      }
+        stock: this.stock
+      };
 
-      this.$store.commit('setUpdateObject', updateObject)
-      
+      this.$store.commit("setUpdateObject", updateObject);
     },
     nameClick() {
       this.updating = !this.updating;
       this.nameVal = this.stock.name;
-    },
+    }
   },
   mounted() {
     // console.log(this.stock);
   }
-}
+};
 </script>
 
 <style scoped>
@@ -107,4 +92,5 @@ export default {
 .name:hover {
   text-decoration: underline;
 }
+
 </style>
