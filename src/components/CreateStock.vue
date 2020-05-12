@@ -3,40 +3,34 @@
     <div class="form-group form-row">
       <div class="col-9">
         <label for="name" class="bold">Name</label>
-        <input 
-          v-model="fields['name']" 
-          class="form-control" 
-          type="text" 
-          placeholder="name" 
-        />
+        <input v-model="fields['name']" class="form-control" type="text" placeholder="name" />
       </div>
       <div class="description_toggle col-3">
         <div class="custom-control custom-switch">
-          <input 
+          <input
             id="toggleDecription"
-            type="checkbox" 
+            type="checkbox"
             @change="toggle()"
-            class="custom-control-input" 
-            :showDescr="showDescr">
-          <label 
-            for="toggleDecription"
-            class="bold custom-control-label">Toggle description</label>
+            class="custom-control-input"
+            :showDescription="showDescription"
+          />
+          <label for="toggleDecription" class="bold custom-control-label">Toggle description</label>
         </div>
       </div>
     </div>
 
-    <div v-if="showDescr" class="form-group">
+    <div v-if="showDescription" class="form-group">
       <div class="p-0 col-12">
         <label class="bold" for="description">Decription</label>
-        <textarea 
+        <textarea
           v-model="fields['description']"
           placeholder="description"
-          class="form-control" 
-          cols="30" 
-          rows="3"></textarea>
+          class="form-control"
+          cols="30"
+          rows="3"
+        ></textarea>
       </div>
     </div>
-
 
     <div class="form-group form-row">
       <div :class="'col-' + colWidth">
@@ -79,75 +73,69 @@
           type="number"
         />
       </div>
-
     </div>
     <div class="form-group">
-      <button 
-        :a="errors"
-        @click="create()" 
-        class="btn btn-secondary btn-block">
-        Submit 
-      </button>
+      <button :a="errors" @click="create()" class="btn btn-secondary btn-block">Submit</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   props: {
-    activeTab: String,
+    activeTab: String
   },
-  data:() => ({
+  data: () => ({
     fields: {
-      "name"                   : "",
-      "stockAmount"            : "",
-      "costPerPackage"         : "",
-      "description"            : "",
-      "millilitrePerPackage"   : "",
-      "caloriesPerPackage"     : "",
+      name: "",
+      stockAmount: "",
+      costPerPackage: "",
+      description: "",
+      millilitrePerPackage: "",
+      caloriesPerPackage: ""
     },
-    showDescr: false,
+    showDescription: false
   }),
   methods: {
     toggle() {
-      this.showDescr = !this.showDescr;
+      this.showDescription = !this.showDescription;
     },
     create() {
-      this.$store.dispatch('submit', this.fields);
+      this.$store.dispatch("submit", this.fields);
 
       // reset fields
-      for(let key in this.fields) {
+      for (let key in this.fields) {
         this.fields[key] = "";
       }
-    },
+    }
   },
   mounted() {
     console.log(this.errors);
   },
   computed: {
     ...mapGetters({
-      errors: 'errors',
+      errors: "errors"
     }),
     colWidth() {
       let foodOrWater = this.activeTab === "food" || this.activeTab === "water";
-      
+
       return foodOrWater ? 4 : 6;
     }
   },
   updated() {
-    if(this.errors) {
+    if (this.errors) {
       this.$swal({
         title: this.errors,
-        icon: "error",
+        icon: "error"
       }).then(() => {
-        this.$store.commit('setError', null);
+        this.$store.commit("setError", null);
       });
     } else {
-      console.log('no');
+      console.log("no");
     }
-  },
+  }
 };
 </script>
 

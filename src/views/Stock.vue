@@ -1,52 +1,48 @@
 <template>
-  <div v-if="stock" class="container mt-3">
+  <div v-if="stock" class="position-relative container mt-3">
+    <div class="arrows">
+      <i class="fas fa-angle-right fa-3x"></i>
+      <i class="fas fa-angle-left fa-3x"></i>
+    </div>
+
     <h3>A page for a single stock of type {{stockType}}</h3>
     <div class="flex">
-
       <!-- left -->
       <div class="box text-center">
         <i :class="'icon fa-2x ' + iconsMap[stockType]"></i>
-        <h3
-          class="stock_item"
-          @click="setCurrentField('name')"
-          >{{stock.name}}</h3>
-        <div
-          class="stock_item"
-          @click="setCurrentField('description')"
-          >{{stock.description}}</div>
-        <hr>
-        <div 
-          @click="setCurrentField('amount')"
-          class="flex_between controls_container">
+        <h3 class="stock_item" @click="setCurrentField('name')">{{stock.name}}</h3>
+        <div class="stock_item" @click="setCurrentField('description')">{{stock.description}}</div>
+        <hr />
+        <div @click="setCurrentField('amount')" class="flex_between controls_container">
           <div class="controls">
             <div class="bold">Amount</div>
             <div>{{stock.amount}}</div>
           </div>
           <i class="fas fa-angle-right fa-lg"></i>
         </div>
-        <div 
-          @click="setCurrentField('costPerPackage')"
-          class="flex_between controls_container">
+        <div @click="setCurrentField('costPerPackage')" class="flex_between controls_container">
           <div class="controls">
             <div class="bold">Cost Per Package</div>
             <div>{{stock.costPerPackage}}</div>
           </div>
           <i class="fas fa-angle-right fa-lg"></i>
         </div>
-        <div 
+        <div
           v-if="stockType === 'food'"
           @click="setCurrentField('caloriesPerPackage')"
-          class="flex_between controls_container">
+          class="flex_between controls_container"
+        >
           <div class="controls">
             <div class="bold">Calories Per Package</div>
             <div>{{stock.caloriesPerPackage}}</div>
           </div>
           <i class="fas fa-angle-right fa-lg"></i>
         </div>
-        <div 
+        <div
           v-if="stockType === 'water'"
           @click="setCurrentField('millilitrePerPackage')"
-          class="flex_between controls_container">
+          class="flex_between controls_container"
+        >
           <div class="controls">
             <div class="bold">Millilitre Per Package</div>
             <div>{{stock.millilitrePerPackage}}</div>
@@ -60,15 +56,9 @@
         <div>
           <h3>{{currentField}}</h3>
           <div class="form-group">
-            <input 
-              v-model="inputVal"
-              class="form-control"
-              :type="inputTypesMap[currentField]"
-            >
+            <input v-model="inputVal" class="form-control" :type="inputTypesMap[currentField]" />
           </div>
-          <button   
-            @click="save()"
-            class="btn btn-primary btn-block">Save</button>
+          <button @click="save()" class="btn btn-primary btn-block">Save</button>
         </div>
       </div>
     </div>
@@ -87,7 +77,7 @@ export default {
       amount: "number",
       millilitrePerPackage: "number",
       name: "text",
-      description: "text",
+      description: "text"
     },
     iconsMap: {
       food: "fas fa-pizza-slice",
@@ -97,7 +87,7 @@ export default {
     },
     inputVal: "",
     stockType: "",
-    currentField: null,
+    currentField: null
   }),
   mounted() {
     const { stock, id } = this.$router.currentRoute.params;
@@ -105,17 +95,17 @@ export default {
     this.$store.dispatch("getOneStock", { stock, id });
   },
   methods: {
-    save(){
-      this.$store.dispatch('updateStock', {
-        stock: this.stock, 
+    save() {
+      this.$store.dispatch("updateStock", {
+        stock: this.stock,
         field: this.currentField,
-        value: this.inputVal,
+        value: this.inputVal
       });
       this.currentField = null;
     },
     setCurrentField(field) {
       this.currentField = field;
-      this.inputVal = this.stock[field]
+      this.inputVal = this.stock[field];
     }
   },
   computed: {
@@ -142,10 +132,10 @@ export default {
 }
 .box {
   width: 45%;
-  padding: .4rem;
-  margin: .4rem;
-  border: .05rem solid #dadee4;
-  border-radius: .1rem;
+  padding: 0.4rem;
+  margin: 0.4rem;
+  border: 0.05rem solid #dadee4;
+  border-radius: 0.1rem;
 }
 .icon {
   background-color: var(--info);
@@ -158,7 +148,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  
 }
 .stock_item {
   cursor: pointer;
@@ -169,7 +158,35 @@ export default {
   cursor: pointer;
   padding: 2px;
 }
-.controls_container:hover, .stock_item:hover {
+.controls_container:hover,
+.stock_item:hover {
   border: 1px solid lightgray;
+}
+.arrows {
+  position: absolute;
+  top: 50%;
+}
+.arrows .fa-angle-right {
+  left: 900px;
+  position: absolute;
+  cursor: pointer;
+  padding: 2px 8px;
+  transition: all 0.4s;
+  background: none;
+}
+.arrows .fa-angle-left {
+  left: -40px;
+  position: absolute;
+  cursor: pointer;
+  padding: 2px 8px;
+  transition: all 0.4s;
+  background: none;
+}
+.arrows .fa-angle-left:hover,
+.arrows .fa-angle-right:hover {
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  padding: 2px 8px;
 }
 </style>

@@ -1,6 +1,6 @@
 /*eslint-disable*/
-import axios from 'axios';
-import router from '../router'
+import axios from "axios";
+import router from "../router";
 
 const port = `5000`;
 const host = `http://localhost:${port}`;
@@ -11,16 +11,18 @@ const axiosInstance = axios.create({
 });
 
 class API {
-  constructor(){}
+  constructor() {}
 
   async get(collection) {
     return axiosInstance.get(`list/${collection}`);
   }
 
   async getOne(collection, id) {
-    let { stock } = (await axiosInstance.get(`list/show/${id}?stockCategory=${collection}`)).data;
-    if(!stock) return false;
-    
+    let { stock } = (
+      await axiosInstance.get(`list/show/${id}?stockCategory=${collection}`)
+    ).data;
+    if (!stock) return false;
+
     let item = stock[0];
 
     return item;
@@ -37,36 +39,34 @@ class API {
   }
 
   async update(stock) {
-
     const params = {
-      'name': stock['name'],
-      'description': stock['description'],
-      'stockCategory': stock['stockCategory'],
-      'stockAmount': stock['amount'],
-      'costPerPackage': stock['costPerPackage'],
-    }
+      name: stock["name"],
+      description: stock["description"],
+      stockCategory: stock["stockCategory"],
+      stockAmount: stock["amount"],
+      costPerPackage: stock["costPerPackage"],
+    };
 
-    if(stock['stockCategory'] === 'food') {
-      params['caloriesPerPackage'] = stock['caloriesPerPackage'];
+    if (stock["stockCategory"] === "food") {
+      params["caloriesPerPackage"] = stock["caloriesPerPackage"];
       // params['calories-per-package'] = stock['caloriesPerPackage'];
-    } else if (stock['stockCategory'] === 'water') {
-      params['millilitrePerPackage'] = stock['millilitrePerPackage'];
+    } else if (stock["stockCategory"] === "water") {
+      params["millilitrePerPackage"] = stock["millilitrePerPackage"];
     }
 
     return axiosInstance.get(`list/update/${stock.id}`, {
       params,
-    })
+    });
   }
 
   async resetDatabase() {
-
     let { status } = (await axiosInstance.get("list/reset-database")).data;
-    if(status === 200) {
+    if (status === 200) {
       router.push({
-        name: "App"
-      })
+        name: "App",
+      });
     } else {
-      console.log('error');
+      console.log("error");
     }
   }
 }

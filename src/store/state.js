@@ -4,7 +4,7 @@ export const initialUpdateObject = {
   inputType: null,
   stock: null,
   active: false,
-}
+};
 
 export const state = {
   errors: null,
@@ -14,4 +14,4 @@ export const state = {
   search: "",
   updateObject: initialUpdateObject,
   oneStock: null,
-}
+};

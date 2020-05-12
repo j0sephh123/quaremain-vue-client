@@ -13,7 +13,7 @@ body {
 .bold {
   font-weight: 600;
 }
-.c {
+.c-hand {
   cursor: pointer;
 }
 .flex {
@@ -165,17 +165,16 @@ td {
 .experimental .nav-link.active:hover {
   background-color: var(--primary_hover);
 }
-.experimental .fa-trash-alt:hover {
-  cursor: pointer;
-  transform: scale(1.2) translateY(-2px);
-  transition: all 0.4s;
-  color: var(--secondary);
+.experimental .fa-trash-alt {
+  color: var(--danger);
 }
-.experimental .fa-edit:hover {
+.experimental .fa-edit {
+  color: var(--success);
+}
+.experimental .fa-trash-alt:hover, .experimental .fa-edit:hover {
   cursor: pointer;
   transform: scale(1.2) translateY(-2px);
   transition: all 0.4s;
-  color: var(--primary);
 }
 .experimental .actions {
   display: flex;

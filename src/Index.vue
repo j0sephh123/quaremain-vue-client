@@ -11,8 +11,8 @@
 <script>
 export default {
   components: {
-    SidebarComponent: () => import ('./components/Sidebar'),
-    NavComponent: () => import ('./components/Nav'),
+    SidebarComponent: () => import("./components/Sidebar"),
+    NavComponent: () => import("./components/Nav")
   }
-}
+};
 </script>
