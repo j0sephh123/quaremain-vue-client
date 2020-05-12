@@ -51,7 +51,7 @@
           placeholder="amount"
           class="form-control"
           type="number"
-          name="amount"
+          name="stockAmount"
         />
       </div>
 
@@ -132,8 +132,6 @@ export default {
       }).then(() => {
         this.$store.commit("setError", null);
       });
-    } else {
-      console.log("no");
     }
   }
 };

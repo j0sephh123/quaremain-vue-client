@@ -1,5 +1,6 @@
+/* eslint-disable */
 import { api } from "../classes/Api";
-import { InputParser } from "../classes/InputParser";
+import { stockFactory } from "../classes/StockModel";
 import router from "../router";
 
 export const actions = {
@@ -18,9 +19,13 @@ export const actions = {
   },
   async submit({ state, dispatch, commit }, fields) {
     // parse the data for the different types of stocks
-    let submitData = InputParser.submitData(fields, state.activeTab);
+    let stock = stockFactory(state.activeTab, fields);
 
-    let result = await api.create(submitData);
+    // let submitData = StockModel.submitData(fields, state.activeTab);
+
+    // console.log(stock);
+    let result = await api.create(stock);
+    console.log(result);
 
     // for now we get only result.status, so, we fetch the whole
     // dataset again in the future probably just get the newly created

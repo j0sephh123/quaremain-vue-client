@@ -1,20 +1,21 @@
 import Vue from "vue";
-import Index from "./Index.vue";
+import VueSweetalert2 from "vue-sweetalert2";
 
-Vue.config.productionTip = false;
+// css
 import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import "./assets/bootstrap.css";
 import "./assets/style.css";
-
-import VueSweetalert2 from "vue-sweetalert2";
-
-// If you don't need the styles, do not connect
 import "sweetalert2/dist/sweetalert2.min.css";
 
+// tools
 Vue.use(VueSweetalert2);
 
-import store from "./store";
+// main stuff
 import router from "./router";
+import store from "./store";
+import Index from "./Index.vue";
+
+Vue.config.productionTip = false;
 
 new Vue({
   router,
