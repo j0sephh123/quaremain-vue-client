@@ -18,18 +18,10 @@ export const actions = {
     // but it finally works
   },
   async submit({ state, dispatch, commit }, fields) {
-    // parse the data for the different types of stocks
     let stock = stockFactory(state.activeTab, fields);
 
-    // let submitData = StockModel.submitData(fields, state.activeTab);
-
-    // console.log(stock);
     let result = await api.create(stock);
-    console.log(result);
 
-    // for now we get only result.status, so, we fetch the whole
-    // dataset again in the future probably just get the newly created
-    // stock and add it do the existing stocks
     if (result.status === 200) {
       let exists = result.data.status === 404;
       if (!exists) {

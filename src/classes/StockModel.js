@@ -1,29 +1,32 @@
 /* eslint-disable */
-
 class Stock {
-  constructor({name, description, stockAmount, costPerPackage}) {
-    this.name = name;
-    this.description = description;
-    this.stockAmount = stockAmount;
-    this.costPerPackage = costPerPackage;
+  constructor(stock) {
+    this.name = stock.name;
+    this.description = stock.description;
+    this.stockAmount = stock.stockAmount;
+    this.costPerPackage = stock.costPerPackage;
+    this.stockCategory = stock.stockCategory;
   }
 }
 
 class Water extends Stock {
-  constructor({name, description, amount, costPerPackage, millilitrePerPackage}) {
-    super({name, description, amount, costPerPackage})
-    this.millilitrePerPackage = millilitrePerPackage;
+  constructor(stock) {
+    super(stock);
+
+    this.millilitrePerPackage = stock.millilitrePerPackage;
   }
 }
 
 class Food extends Stock {
-  constructor({name, description, amount, costPerPackage, caloriesPerPackage}) {
-    super({name, description, amount, costPerPackage})
-    this.caloriesPerPackage = caloriesPerPackage;
+  constructor(stock) {
+    super(stock);
+
+    this.caloriesPerPackage = stock.caloriesPerPackage;
   }
 }
 
 export const stockFactory = (type, fields) => {
+  fields['stockCategory'] = type;
   let stock; 
   if(type === 'food') {
     stock = new Food(fields);
@@ -34,36 +37,3 @@ export const stockFactory = (type, fields) => {
   }
   return stock;
 }
-
-// export class StockModel {
-//   constructor() {}
-
-//   /**
-//    * stockCategory: [food, water, medicine, weapon]; required; all
-//    * name: string; required; all
-//    * amount: number; required; all
-//    * costPerPackage: number; required; all
-//    * description: string; not required; all
-//    *
-//    * millilitrePerPackage: number; required; water
-//    * caloriesPerPackage: number; required; food
-//    */
-//   static submitData(fields, stock) {
-//     const data = {
-//       name: fields["name"],
-//       description: fields["description"],
-//       stockCategory: stock,
-//       stockAmount: fields["stockAmount"],
-//       costPerPackage: fields["costPerPackage"],
-//     };
-
-//     if (stock === "water") {
-//       data["millilitrePerPackage"] = fields["millilitrePerPackage"];
-//     }
-//     if (stock === "food") {
-//       data["caloriesPerPackage"] = fields["caloriesPerPackage"];
-//     }
-
-//     return data;
-//   }
-// }
