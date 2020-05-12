@@ -2,7 +2,7 @@
   <tr>
     <td>{{ stock.id }}</td>
     <td>
-      <span @click="onUpdateClick('name', 'text')" class="c-hand name">{{ stock.name }}</span>
+      <span @click="onUpdateClick('name', 'text')" class="c-hand bold">{{ stock.name }}</span>
     </td>
     <td class="c-hand" @click="onUpdateClick('amount', 'number')">{{ stock.amount }}</td>
     <td>{{ stock.costPerPackage.toFixed(2) }}</td>
@@ -43,27 +43,6 @@ export default {
           this.$store.dispatch("removeStock", id);
         }
       });
-      // swalWithBootstrapButtons.fire({
-      // }).then((result) => {
-      //   if (result.value) {
-      //     swalWithBootstrapButtons.fire(
-      //       'Deleted!',
-      //       'Your file has been deleted.',
-      //       'success'
-      //     )
-      //   } else if (
-      //     /* Read more about handling dismissals below */
-      //     result.dismiss === Swal.DismissReason.cancel
-      //   ) {
-      //     swalWithBootstrapButtons.fire(
-      //       'Cancelled',
-      //       'Your imaginary file is safe :)',
-      //       'error'
-      //     )
-      //   }
-      // })
-
-      //
     },
     onUpdateClick(field, inputType) {
       let updateObject = {
@@ -79,18 +58,5 @@ export default {
       this.nameVal = this.stock.name;
     }
   },
-  mounted() {
-    // console.log(this.stock);
-  }
 };
 </script>
-
-<style scoped>
-.name {
-  font-weight: 600;
-}
-.name:hover {
-  text-decoration: underline;
-}
-
-</style>

@@ -42,14 +42,13 @@ export default {
   }),
   methods: {
     closeModal() {
-      console.log("remove modal");
       this.$store.commit("setUpdateObject", null);
     }
   },
   computed: {
     ...mapGetters({
       updateObject: "updateObject"
-    })
+    }),
   },
   mounted() {
     this.updateVal = this.updateObject.stock[this.updateObject.field];

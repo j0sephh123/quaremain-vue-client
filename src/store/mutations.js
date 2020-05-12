@@ -23,15 +23,13 @@ export const mutations= {
       };
     }
   },
+  /**
+   * 
+   * @param {Object} state - vuex state
+   * @param {string} error 
+   */
   setError(state, error) {
     state.errors = error;
-    // Vue.set(state, 'errors', error)
-    // state.errors = error
-    // Vue.set(state.errors, 'text', text)
-    // state.errors = {
-    //   ...state.errors,
-    //   text,
-    // }
   },
   setOneStock(state, oneStock) {
     state.oneStock = oneStock;
