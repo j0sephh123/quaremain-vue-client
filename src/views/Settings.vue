@@ -1,7 +1,9 @@
 <template>
   <div class="w-100 text-center mt-3">
     <div class="mb-3">
-      <button class="btn btn-dark">Reset Database</button>
+      <button 
+        @click="$store.dispatch('resetDatabase')"
+        class="btn btn-dark">Reset Database</button>
     </div>
     <h3>Color themes</h3>
     <h4>https://bootswatch.com/</h4>

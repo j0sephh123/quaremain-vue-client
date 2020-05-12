@@ -13,7 +13,7 @@
       <div class="button_container mr-3">
         <button 
           @click="$store.commit('toggleShowForm')"
-          class="btn btn-secondary">Create item</button>
+          class="btn btn-secondary">Create {{$store.state.activeTab}}</button>
       </div>
     </div>
   </nav>

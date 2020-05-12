@@ -134,6 +134,9 @@ export default new Vuex.Store({
       }
       commit('setOneStock', item)
     },
+    async resetDatabase() {
+      await api.resetDatabase()
+    }
   },
   getters,
 });

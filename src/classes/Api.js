@@ -1,11 +1,10 @@
 /*eslint-disable*/
-
 import axios from 'axios';
+import router from '../router'
 
 const port = `5000`;
 const host = `http://localhost:${port}`;
-const api_ver = 0.1;
-const apiRoot = `/api/${api_ver}/app/`;
+const apiRoot = `/api/app/`;
 
 const axiosInstance = axios.create({
   baseURL: `${host}${apiRoot}`,
@@ -19,10 +18,12 @@ class API {
   }
 
   async getOne(collection, id) {
-    let stocks = (await axiosInstance.get(`list/${collection}`)).data.stocks;
-    if(!stocks) return false;
+    let { stock } = (await axiosInstance.get(`list/show/${id}?stockCategory=${collection}`)).data;
+    if(!stock) return false;
+    
+    let item = stock[0];
 
-    return stocks.find(stock => stock.id === +id);
+    return item;
   }
 
   async remove(id, collection) {
@@ -55,6 +56,18 @@ class API {
     return axiosInstance.get(`list/update/${stock.id}`, {
       params,
     })
+  }
+
+  async resetDatabase() {
+
+    let { status } = (await axiosInstance.get("list/reset-database")).data;
+    if(status === 200) {
+      router.push({
+        name: "App"
+      })
+    } else {
+      console.log('error');
+    }
   }
 }
 

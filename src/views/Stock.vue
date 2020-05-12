@@ -1,22 +1,38 @@
 <template>
   <div v-if="stock" class="container mt-3">
-    <h3>A page for a single stock...</h3>
+    <h3>A page for a single stock of type {{stockType}}</h3>
     <div class="flex">
-      <div class="box">
-        <i :class="'icon fa-2x ' + iconsMap[$router.currentRoute.params.stock]"></i>
+      <div class="box text-center">
+        <i :class="'icon fa-2x ' + iconsMap[stockType]"></i>
         
         <h3>{{stock.name}}</h3>
         <div>{{stock.description}}</div>
         <hr>
         <div class="d-flex justify-content-between align-items-center">
           <div class="controls">
-            <div>amount</div>
+            <div>Amount</div>
+            <div>1</div>
+          </div>
+          <i class="fas fa-angle-right fa-lg"></i>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="controls">
+            <div>Calories Per Package</div>
+            <div>1</div>
+          </div>
+          <i class="fas fa-angle-right fa-lg"></i>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="controls">
+            <div>Cost Per Package</div>
             <div>1</div>
           </div>
           <i class="fas fa-angle-right fa-lg"></i>
         </div>
       </div>
-      <div class="box">2</div>
+      <div class="box">
+        <div><i class="fas fa-user fa-lg"></i></div>
+      </div>
     </div>
   </div>
 </template>
@@ -33,9 +49,11 @@ export default {
       medicine: "fas fa-pills",
       weapon: "fas fa-bolt"
     },
+    stockType: "",
   }),
   mounted() {
     const { stock, id } = this.$router.currentRoute.params;
+    this.stockType = stock;
     this.$store.dispatch("getOneStock", { stock, id });
   },
   computed: {
@@ -61,7 +79,6 @@ export default {
   margin: .4rem;
   border: .05rem solid #dadee4;
   border-radius: .1rem;
-  text-align: center;
 }
 .icon {
   background-color: var(--info);
