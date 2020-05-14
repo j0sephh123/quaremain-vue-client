@@ -1,8 +1,19 @@
 <template>
-  <div v-if="stock" class="position-relative container mt-3">
+  <div 
+    v-if="stock" 
+    style="padding: 0px 50px;"
+    class="position-relative container mt-3 ml-5">
     <div class="arrows">
-      <i class="fas fa-angle-right fa-3x"></i>
-      <i class="fas fa-angle-left fa-3x"></i>
+      <i 
+        v-if="!isFirst"
+        @click="goTo('previous')" 
+        class="fas fa-angle-left fa-3x">
+      </i>
+      <i
+        v-if="!isLast"
+        @click="goTo('next')" 
+        class="fas fa-angle-right fa-3x">
+      </i>
     </div>
 
     <h3>A page for a single stock of type {{stockType}}</h3>
@@ -67,10 +78,14 @@
 
 <script>
 /* eslint-disable */
+import { api } from '../classes/Api';
 import { mapGetters } from "vuex";
+import router from '../router'
 
 export default {
   data: () => ({
+    isFirst: null,
+    isLast: null,
     inputTypesMap: {
       caloriesPerPackage: "number",
       costPerPackage: "number",
@@ -90,11 +105,43 @@ export default {
     currentField: null
   }),
   mounted() {
-    const { stock, id } = this.$router.currentRoute.params;
-    this.stockType = stock;
-    this.$store.dispatch("getOneStock", { stock, id });
+    this.getCurrentStock({ loadAll: true });
   },
   methods: {
+    async getCurrentStock({ loadAll }) {
+      const { stock, id } = this.$router.currentRoute.params;
+      this.id = id;
+      this.stockType = stock;
+      this.$store.dispatch("getOneStock", { stock, id });
+      
+      if(loadAll) {
+        this.allStocks = (await api.get(this.stockType)).data.stocks;
+      } 
+      
+      const currentStockIndex = this.allStocks.findIndex(item => item.id == +this.id) 
+      this.isFirst = currentStockIndex === 0;
+      this.isLast = currentStockIndex === this.allStocks.length - 1;
+      this.currentStockIndex = currentStockIndex;
+    },
+    async goTo(direction) { // next or previous
+      let futureStock;
+      
+      if(direction === "next" && !this.isLast) {
+        futureStock = this.allStocks[this.currentStockIndex + 1];
+      }
+
+      if(direction === "previous" && !this.isFirst) {
+        futureStock = this.allStocks[this.currentStockIndex - 1];
+      }
+
+      router.push({ 
+        name: "Stock", 
+        params: { 
+          stock: this.stockType, 
+          id: futureStock.id 
+        } 
+      });
+    },
     save() {
       this.$store.dispatch("updateStock", {
         stock: this.stock,
@@ -106,16 +153,21 @@ export default {
     setCurrentField(field) {
       this.currentField = field;
       this.inputVal = this.stock[field];
-    }
+    },
   },
   computed: {
     ...mapGetters({
-      stock: "stock"
-    })
+      stock: "stock",
+    }),
   },
   updated() {
-    console.log(this.stock);
-  }
+    console.log("updated");
+  },
+  watch:{
+    $route (to, from){
+      this.getCurrentStock({ loadAll: false });
+    },
+  },
 };
 </script>
 
@@ -167,7 +219,7 @@ export default {
   top: 50%;
 }
 .arrows .fa-angle-right {
-  left: 900px;
+  left: 850px;
   position: absolute;
   cursor: pointer;
   padding: 2px 8px;
@@ -175,7 +227,7 @@ export default {
   background: none;
 }
 .arrows .fa-angle-left {
-  left: -40px;
+  left: -70px;
   position: absolute;
   cursor: pointer;
   padding: 2px 8px;

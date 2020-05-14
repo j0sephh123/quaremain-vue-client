@@ -5,7 +5,9 @@
       to="/"
       >Quaremain
     </router-link>
-    <div class="controls">
+    <div 
+      v-if="this.currentRouteName === 'App'"
+      class="controls">
       <div class="search_box ml-3">
         <i class="fas fa-search fa-lg"></i>
         <input id="search" v-model="search" class="form-control" placeholder="Search">
@@ -21,6 +23,9 @@
 
 <script>
 export default {
+  data: () => ({
+    currentRouteName: null,
+  }),
   computed: {
     search: {
       get() {
@@ -29,6 +34,17 @@ export default {
       set(value) {
         this.$store.commit('updateSearch', value)
       }
+    },
+  },
+  mounted() {
+    this.currentRouteName = this.$router.currentRoute.name
+  },
+  updated() {
+    console.log(this.currentRouteName);
+  },
+  watch: {
+    $route (to){
+      this.currentRouteName = to.name;
     },
   },
 }

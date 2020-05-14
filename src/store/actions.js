@@ -66,7 +66,7 @@ export const actions = {
   },
   async getOneStock({ commit }, { stock, id }) {
     let item = await api.getOne(stock, id);
-    console.log(item);
+    // console.log(item);
     if (!item) {
       router.push({
         name: "App",

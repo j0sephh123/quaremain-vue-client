@@ -1,6 +1,6 @@
 import { initialUpdateObject } from './state';
 
-export const mutations= {
+export const mutations = {
   changeCategory(state, payload) {
     state.activeTab = payload;
   },
