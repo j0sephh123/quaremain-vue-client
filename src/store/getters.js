@@ -18,12 +18,7 @@ export const getters = {
     // console.log('updateObject getter, we want to see this message');
     return updateObject;
   },
-  errors: (state) => {
-    // console.log(state.errors);
-    return state.errors;
-  },
-  stock: (state) => {
-    // console.log(state.oneStock);
-    return state.oneStock;
-  },
+  errors: ({ errors }) => errors,
+  stock: ({ oneStock }) => oneStock,
+  sidebarStructure: ({ sidebar }) => sidebar.structure,
 };

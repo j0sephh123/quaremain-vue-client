@@ -4,7 +4,7 @@
       <i class="fas fa-bars fa-2x"></i>
     </li>
     <ul class="list-group">
-      <div class="parent_box" v-for="parent in structure" :key="parent.id">
+      <div class="parent_box" v-for="parent in sidebarStructure" :key="parent.id">
         <router-link 
           exact
           active-class="active"
@@ -26,38 +26,7 @@
 </template>
 
 <script>
-const structure = [
-  {
-    id: 1,
-    name: "Quaremain",
-    icon: "fas fa-atom",
-    slug: "/",
-  },
-  {
-    id: 2,
-    name: "About",
-    icon: "fas fa-info-circle",
-    slug: "/about",
-  },
-  {
-    id: 3,
-    name: "Settings",
-    icon: "fas fa-cog",
-    slug: "/settings",
-  },
-  {
-    id: 4,
-    name: "Survival days",
-    icon: "fas fa-calendar-alt",
-    slug: "/survival",
-  },
-
-  // <i class="fas fa-cog"></i>
-  // <i class="fas fa-calendar-alt"></i>
-
-
-];
-//console.log(structure);
+import { mapGetters } from 'vuex';
 
 export default {
   name: "Sidebar",
@@ -66,7 +35,6 @@ export default {
     return {
       toggled: true,
       activeParent: null,
-      structure,
       parentClasses: [
         "list-group-item",
         "d-flex",
@@ -76,6 +44,11 @@ export default {
         "flex-nowrap"
       ]
     };
+  },
+  computed: {
+    ...mapGetters({
+      sidebarStructure: 'sidebarStructure',
+    }),
   },
   methods: {
     dynamicParentClasses(parentID) {
@@ -88,20 +61,9 @@ export default {
     }
   },
   mounted() {
-    // const path = window.location.pathname;
-
-    // const activeParent = structure.find(parent =>
-    //   parent.children.find(child => child.slug === path)
-    // );
-    // if (activeParent) {
-    //   this.parentClick(activeParent.id);
-    // }
-
-    // // this assures we have border-left on the active child
-    // this.slug = path;
+    // console.log(this.sidebarStructure);
   },
   updated() {
-    //console.log('updated', {slug: this.slug})
   }
 };
 </script>
