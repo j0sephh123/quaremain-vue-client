@@ -4,13 +4,14 @@
       <i class="fas fa-bars fa-2x"></i>
     </li>
     <ul class="list-group">
-      <div class="parent_box" v-for="parent in sidebarStructure" :key="parent.id">
-        <router-link 
+      <div class="parent_box" v-for="parent in sidebarItems" :key="parent.id">
+        <router-link
           exact
           active-class="active"
           tag="li"
           :to="parent.slug"
-          :class="dynamicParentClasses(parent.id)">
+          :class="dynamicParentClasses(parent.id)"
+        >
           <div>
             <i :class="parent.icon + ' fa-lg'"></i>
             <a v-if="!toggled" class="parent_name">{{ parent.name }}</a>
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   name: "Sidebar",
@@ -47,8 +48,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      sidebarStructure: 'sidebarStructure',
-    }),
+      sidebarItems: "sidebarItems"
+    })
   },
   methods: {
     dynamicParentClasses(parentID) {
@@ -61,10 +62,9 @@ export default {
     }
   },
   mounted() {
-    // console.log(this.sidebarStructure);
+    // console.log(this.sidebarItems);
   },
-  updated() {
-  }
+  updated() {}
 };
 </script>
 

@@ -20,5 +20,5 @@ export const getters = {
   },
   errors: ({ errors }) => errors,
   stock: ({ oneStock }) => oneStock,
-  sidebarStructure: ({ sidebar }) => sidebar.structure,
+  sidebarItems: ({ sidebar }) => sidebar.structure,
 };
