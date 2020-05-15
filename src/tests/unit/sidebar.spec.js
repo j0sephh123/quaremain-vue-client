@@ -14,13 +14,13 @@ describe("Sidebar", () => {
     router,
   });
 
-  
-
   // get sidebarItems from getters
   // find out how many .parent_box we have
   let firstParentBox = wrapper.find(".parent_box");
   let allParentBoxes = wrapper.findAll(".parent_box");
   let sidebarItems = store.getters.sidebarItems;
+
+  let { path } = wrapper.vm.$router.currentRoute;
 
   test("sidebarItemsLength to be equal to the length of all .parent_box", () => {
     expect(
@@ -42,8 +42,6 @@ describe("Sidebar", () => {
   });
 
   test("active slug corresponds to active sidebar item", () => {
-    let { path } = wrapper.vm.$router.currentRoute;
-
     expect(
       wrapper.get(`.parent_box router-link-stub`).attributes('to')
     )
