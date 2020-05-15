@@ -52,4 +52,14 @@ describe("Sidebar", () => {
     );
 
   });
+
+  test("sidebar toggles on click", async () => {
+    let beforeClick = wrapper.vm.$data.toggled;
+    
+    await wrapper.get(".fa-bars").trigger('click');
+
+    let afterClick = wrapper.vm.$data.toggled;
+    
+    expect(beforeClick).toBe(!afterClick);
+  });
 });

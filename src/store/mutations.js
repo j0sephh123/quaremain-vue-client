@@ -23,11 +23,6 @@ export const mutations = {
       };
     }
   },
-  /**
-   * 
-   * @param {Object} state - vuex state
-   * @param {string} error 
-   */
   setError(state, error) {
     state.errors = error;
   },
