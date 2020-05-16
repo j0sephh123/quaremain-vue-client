@@ -1,33 +1,33 @@
 <template>
   <div class="container mt-3">
     <h3>Mb show one of these 4 depending on some calculation</h3>
-    <div class="alert alert-dismissible alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Best change of survival</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
-    </div>
-    
-    <div class="alert alert-dismissible alert-info">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Middle chance</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
-    </div>
-    <div class="alert alert-dismissible alert-warning">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <h4 class="alert-heading">Warning!</h4>
-      <p class="mb-0">Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
-    </div>
-    <div class="alert alert-dismissible alert-danger">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Worst</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
-    </div>
+      <div 
+        v-if="this.activeAlert"
+        :class="'alert alert-dismissible alert-' + alerts[activeAlert]['type']">
+        <button 
+          @click="activeAlert = null"
+          type="button" 
+          class="close">&times;</button>
+        {{alerts[activeAlert]['text']}}
+      </div>
   </div>
 </template>
 
 <script>
-export default {
+import { api } from '../classes/Api';
 
+export default {
+  data: () => ({
+    activeAlert: null,
+    alerts: {
+      1: {type: "success", text: "green text"},
+      2: {type: "info", text: "blue text"},
+      3: {type: "warning", text: "warning text"},
+      4: {type: "danger", text: "red text"},
+    },
+  }),
+  async mounted() {
+    this.activeAlert = await api.getSurvival();
+  },
 }
 </script>
-
-<style>
-
-</style>

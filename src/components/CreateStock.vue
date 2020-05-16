@@ -75,7 +75,7 @@
       </div>
     </div>
     <div class="form-group">
-      <button :a="errors" @click="create()" class="btn btn-secondary btn-block">Submit</button>
+      <button :a="errors" @click="create()" class="bold btn btn-secondary btn-block">Submit</button>
     </div>
   </div>
 </template>
@@ -136,21 +136,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.description_toggle {
-  display: flex;
-  align-items: flex-end;
-}
-.description_toggle .custom-control {
-  padding-bottom: 6px;
-}
-.description_toggle label:hover {
-  color: var(--primary);
-  cursor: pointer;
-}
-.btn {
-  font-weight: 600;
-  font-size: 1.2em;
-}
-</style>

@@ -13,6 +13,14 @@ const axiosInstance = axios.create({
 class API {
   constructor() {}
 
+  async delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  getRandomNum(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
   async get(collection) {
     return axiosInstance.get(`list/${collection}`);
   }
@@ -68,6 +76,11 @@ class API {
     } else {
       console.log("error");
     }
+  }
+
+  async getSurvival() {
+    await this.delay(500);
+    return this.getRandomNum(1, 5);
   }
 }
 

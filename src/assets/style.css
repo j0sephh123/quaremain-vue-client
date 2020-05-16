@@ -189,5 +189,170 @@ td {
   font-weight: 600;
 }
 
-
 /* experimental end */
+
+/* CreateStock.vue start */
+.description_toggle {
+  display: flex;
+  align-items: flex-end;
+}
+.description_toggle .custom-control {
+  padding-bottom: 6px;
+}
+.description_toggle label:hover {
+  color: var(--primary);
+  cursor: pointer;
+}
+/* CreateStock.vue end */
+
+/* Nav.vue start */
+.custom_nav {
+  background-color: var(--primary);
+  padding: 8px 16px;
+  display: flex;
+  font-family: "Montserrat", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.custom_nav .brand {
+  color: white;
+  font-size: 1.25rem;
+  padding: 5px 0px;
+}
+.custom_nav .brand:hover {
+  text-decoration: none;
+}
+.custom_nav .controls {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  align-items: center;
+}
+.custom_nav .search_box {
+  position: relative;
+}
+.custom_nav .fa-search {
+  position: absolute;
+  left: 15px;
+  top: 12px;
+}
+.custom_nav #search {
+  width: 50%;
+  transition: all 0.4s;
+  padding-left: 50px;
+}
+.custom_nav #search:focus {
+  width: 100%;
+}
+/* Nav.vue end */
+/* UpdateModal.vue start */
+.modal-mask {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+.modal-container {
+  width: 500px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+}
+/* UpdateModal.vue end */
+
+/* Settings.vue start */
+.minty {
+  background-color: var(--primary);
+}
+.lux {
+  color: white;
+  background-color: #1a1a1a;
+  border-radius: 0;
+}
+.pulse {
+  background-color: #593196;
+  border-radius: 0;
+}
+/* Settings.vue end */
+
+/* Stock.vue start */
+.stock_page .flex {
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: flex-start;
+}
+.stock_page .flex_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stock_page .box {
+  width: 45%;
+  padding: 0.4rem;
+  margin: 0.4rem;
+  border: 0.05rem solid #dadee4;
+  border-radius: 0.1rem;
+}
+.stock_page .icon {
+  background-color: var(--info);
+  border-radius: 50%;
+  padding: 25px;
+  margin: 5px;
+  color: white;
+}
+.stock_page .controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.stock_page .stock_item {
+  cursor: pointer;
+}
+.stock_page .controls_container {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 2px;
+}
+.stock_page .controls_container:hover,
+.stock_page .stock_item:hover {
+  border: 1px solid lightgray;
+}
+.stock_page .arrows {
+  position: absolute;
+  top: 50%;
+}
+.stock_page .arrows .fa-angle-right {
+  left: 850px;
+  position: absolute;
+  cursor: pointer;
+  padding: 2px 8px;
+  transition: all 0.4s;
+  background: none;
+}
+.stock_page .arrows .fa-angle-left {
+  left: -70px;
+  position: absolute;
+  cursor: pointer;
+  padding: 2px 8px;
+  transition: all 0.4s;
+  background: none;
+}
+.stock_page .arrows .fa-angle-left:hover,
+.stock_page .arrows .fa-angle-right:hover {
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  padding: 2px 8px;
+}
+/* Stock.vue end */

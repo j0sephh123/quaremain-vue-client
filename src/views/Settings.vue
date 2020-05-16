@@ -31,18 +31,3 @@ export default {
   }),
 }
 </script>
-
-<style scoped>
-.minty {
-  background-color: var(--primary);
-}
-.lux {
-  color: white;
-  background-color: #1a1a1a;
-  border-radius: 0;
-}
-.pulse {
-  background-color: #593196;
-  border-radius: 0;
-}
-</style>
