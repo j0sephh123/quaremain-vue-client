@@ -3,7 +3,11 @@
     <div class="form-group form-row">
       <div class="col-9">
         <label for="name" class="bold">Name</label>
-        <input v-model="fields['name']" class="form-control" type="text" placeholder="name" />
+        <input 
+          v-model="fields['name']" 
+          class="form-control" 
+          type="text" 
+          placeholder="name" />
       </div>
       <div class="description_toggle col-3">
         <div class="custom-control custom-switch">
@@ -14,7 +18,9 @@
             class="custom-control-input"
             :showDescription="showDescription"
           />
-          <label for="toggleDecription" class="bold custom-control-label">Toggle description</label>
+          <label 
+            for="toggleDecription" 
+            class="bold custom-control-label">Toggle description</label>
         </div>
       </div>
     </div>
@@ -75,7 +81,9 @@
       </div>
     </div>
     <div class="form-group">
-      <button :a="errors" @click="create()" class="bold btn btn-secondary btn-block">Submit</button>
+      <button 
+        @click="create()" 
+        class="bold btn btn-secondary btn-block">Submit</button>
     </div>
   </div>
 </template>

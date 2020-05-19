@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%;">
+  <div class="app">
     <div class="experimental container pt-2 px-5 ml-2">
 
       <template v-if="showForm">
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-// import { api } from './classes/Api';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -43,9 +42,7 @@ export default {
     CreateStock: () => import('./components/CreateStock'),
     UpdateModal: () => import('./components/UpdateModal'),
   },
-
   mounted() {
-    // let result = (await api.get('food')).data;
     this.$store.dispatch('loadStocks', "food")
   },
   updated() {
@@ -59,7 +56,10 @@ export default {
       updateObject: 'updateObject',
     }),
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
+
+<style lang="scss">
+
+</style>

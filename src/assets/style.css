@@ -356,3 +356,8 @@ td {
   padding: 2px 8px;
 }
 /* Stock.vue end */
+/* App.vue start */
+.app {
+  width: 100%;
+}
+/* App.vue end */

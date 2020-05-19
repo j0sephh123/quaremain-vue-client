@@ -10,7 +10,11 @@
       class="controls">
       <div class="search_box ml-3">
         <i class="fas fa-search fa-lg"></i>
-        <input id="search" v-model="search" class="form-control" placeholder="Search">
+        <input 
+          id="search" 
+          v-model="search" 
+          class="form-control" 
+          placeholder="Search">
       </div>
       <div class="button_container mr-3">
         <button 
