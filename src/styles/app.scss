@@ -1,0 +1,19 @@
+.app {
+  width: 100%;
+}
+
+:root {
+  --sidebar_hover: rgba(0,0,0,0.1);
+  --black: #5a5a5a;
+  --primary_hover: #5eb69d;
+}
+
+@import "./helper.scss";
+
+@import "./index.scss";
+@import "./sidebar.scss";
+@import "./nav.scss";
+@import "./updateModal.scss";
+@import "./createStock.scss";
+@import "./stock.scss";
+@import "./settings.scss";

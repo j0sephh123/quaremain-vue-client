@@ -4,7 +4,6 @@ import VueSweetalert2 from "vue-sweetalert2";
 // css
 import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import "./assets/bootstrap.css";
-import "./assets/style.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 // tools

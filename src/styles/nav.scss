@@ -1,0 +1,38 @@
+/* Nav.vue start */
+.custom_nav {
+  background-color: var(--primary);
+  padding: 8px 16px;
+  display: flex;
+  font-family: "Montserrat", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.custom_nav .brand {
+  color: white;
+  font-size: 1.25rem;
+  padding: 5px 0px;
+}
+.custom_nav .brand:hover {
+  text-decoration: none;
+}
+.custom_nav .controls {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  align-items: center;
+}
+.custom_nav .search_box {
+  position: relative;
+}
+.custom_nav .fa-search {
+  position: absolute;
+  left: 15px;
+  top: 12px;
+}
+.custom_nav #search {
+  width: 50%;
+  transition: all 0.4s;
+  padding-left: 50px;
+}
+.custom_nav #search:focus {
+  width: 100%;
+}
+/* Nav.vue end */

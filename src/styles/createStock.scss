@@ -1,0 +1,11 @@
+.description_toggle {
+  display: flex;
+  align-items: flex-end;
+}
+.description_toggle .custom-control {
+  padding-bottom: 6px;
+}
+.description_toggle label:hover {
+  color: var(--primary);
+  cursor: pointer;
+}
