@@ -1,71 +1,70 @@
-/* Stock.vue start */
-.stock_page .flex {
-  display: flex;
-  /* justify-content: space-around; */
-  align-items: flex-start;
+.stock_page {
+  .flex {
+    display: flex;
+    align-items: flex-start;
+  }
+  .flex_between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .box {
+    width: 45%;
+    padding: 0.4rem;
+    margin: 0.4rem;
+    border: 0.05rem solid #dadee4;
+    border-radius: 0.1rem;
+  }
+  .icon {
+    background-color: var(--info);
+    border-radius: 50%;
+    padding: 25px;
+    margin: 5px;
+    color: white;
+  }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .stock_item {
+    cursor: pointer;
+  }
+  .controls_container {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 2px;
+  }
+  .controls_container:hover,
+  .stock_item:hover {
+    border: 1px solid lightgray;
+  }
+  .arrows {
+    position: absolute;
+    top: 50%;
+  }
+  .arrows .fa-angle-right {
+    left: 850px;
+    position: absolute;
+    cursor: pointer;
+    padding: 2px 8px;
+    transition: all 0.4s;
+    background: none;
+  }
+  .arrows .fa-angle-left {
+    left: -70px;
+    position: absolute;
+    cursor: pointer;
+    padding: 2px 8px;
+    transition: all 0.4s;
+    background: none;
+  }
+  .arrows .fa-angle-left:hover,
+  .arrows .fa-angle-right:hover {
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    padding: 2px 8px;
+  }
 }
-.stock_page .flex_between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.stock_page .box {
-  width: 45%;
-  padding: 0.4rem;
-  margin: 0.4rem;
-  border: 0.05rem solid #dadee4;
-  border-radius: 0.1rem;
-}
-.stock_page .icon {
-  background-color: var(--info);
-  border-radius: 50%;
-  padding: 25px;
-  margin: 5px;
-  color: white;
-}
-.stock_page .controls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.stock_page .stock_item {
-  cursor: pointer;
-}
-.stock_page .controls_container {
-  border-bottom: 1px solid lightgray;
-  margin-bottom: 10px;
-  cursor: pointer;
-  padding: 2px;
-}
-.stock_page .controls_container:hover,
-.stock_page .stock_item:hover {
-  border: 1px solid lightgray;
-}
-.stock_page .arrows {
-  position: absolute;
-  top: 50%;
-}
-.stock_page .arrows .fa-angle-right {
-  left: 850px;
-  position: absolute;
-  cursor: pointer;
-  padding: 2px 8px;
-  transition: all 0.4s;
-  background: none;
-}
-.stock_page .arrows .fa-angle-left {
-  left: -70px;
-  position: absolute;
-  cursor: pointer;
-  padding: 2px 8px;
-  transition: all 0.4s;
-  background: none;
-}
-.stock_page .arrows .fa-angle-left:hover,
-.stock_page .arrows .fa-angle-right:hover {
-  background: var(--primary);
-  color: white;
-  border-radius: 8px;
-  padding: 2px 8px;
-}
-/* Stock.vue end */
