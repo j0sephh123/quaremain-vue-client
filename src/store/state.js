@@ -23,6 +23,12 @@ export const state = {
         slug: "/",
       },
       {
+        id: 5,
+        name: "Charts",
+        icon: "fas fa-chart-pie",
+        slug: "/charts",
+      },
+      {
         id: 2,
         name: "About",
         icon: "fas fa-info-circle",

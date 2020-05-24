@@ -18,6 +18,11 @@ export default new Router({
       component: () => import('./views/Survival.vue'),
     },
     {
+      path: '/charts',
+      name: 'Charts',
+      component: () => import('./views/Charts.vue'),
+    },
+    {
       path: '/settings',
       name: 'Settings',
       component: () => import('./views/Settings.vue'),
