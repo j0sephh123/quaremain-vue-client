@@ -79,8 +79,22 @@ class API {
   }
 
   async getSurvival() {
-    await this.delay(500);
-    return this.getRandomNum(1, 5);
+    // 1 day equals to 1500 cal and 2300 ml
+    const endpoint = `list/total-survival-days`;
+    const survivalResponse = (await axiosInstance.get(endpoint)).data;
+
+    // if we don't have survival days left, we get 404, so assign it a danger class
+    if(survivalResponse.status === 404) {
+      return ({
+        text: `${survivalResponse.error}`,
+        alertClassName: `danger`,
+      });
+    }
+
+    return ({
+      text: `${survivalResponse.totalSurvivalDays} survival days left.`,
+      alertClassName: survivalResponse.survivalAlertType,
+    });
   }
 }
 

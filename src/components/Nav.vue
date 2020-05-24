@@ -44,7 +44,7 @@ export default {
     this.currentRouteName = this.$router.currentRoute.name
   },
   updated() {
-    console.log(this.currentRouteName);
+    // console.log(this.currentRouteName);
   },
   watch: {
     $route (to){

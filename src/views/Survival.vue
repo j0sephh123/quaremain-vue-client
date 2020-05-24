@@ -3,12 +3,12 @@
     <h3>Mb show one of these 4 depending on some calculation</h3>
       <div 
         v-if="this.activeAlert"
-        :class="'alert alert-dismissible alert-' + alerts[activeAlert]['type']">
+        :class="'alert alert-dismissible alert-' + this.activeAlert.alertClassName">
         <button 
           @click="activeAlert = null"
           type="button" 
           class="close">&times;</button>
-        {{alerts[activeAlert]['text']}}
+        {{this.activeAlert.text}}
       </div>
   </div>
 </template>
@@ -16,18 +16,30 @@
 <script>
 import { api } from '../classes/Api';
 
+// {
+//     "error": "Total required survival resources is too low! Consider stocking more food and water!",
+//     "status": 404
+// }
+
+// {
+//     "totalSurvivalDays": 1,
+//     "status": 200,
+//     "survivalAlertType": "warning" | "info" "success"
+// }
+
+/**
+ * 
+ */
+
 export default {
   data: () => ({
+    // alertClassName: enum [success, info, warning, danger]
     activeAlert: null,
-    alerts: {
-      1: {type: "success", text: "green text"},
-      2: {type: "info", text: "blue text"},
-      3: {type: "warning", text: "warning text"},
-      4: {type: "danger", text: "red text"},
-    },
   }),
   async mounted() {
+    
     this.activeAlert = await api.getSurvival();
+    console.log(this.activeAlert);
   },
 }
 </script>
