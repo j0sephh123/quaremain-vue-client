@@ -1,0 +1,92 @@
+[
+    {
+      "name": "food1",
+      "description": "food1 description",
+      "stockAmount": 12,
+      "costPerPackage": "12.02",
+      "caloriesPerPackage": 1200,
+      "stockCategory": "food"
+    },
+    {
+      "name": "food2",
+      "description": "food2 description",
+      "stockAmount": 5,
+      "costPerPackage": "3",
+      "caloriesPerPackage": 200,
+      "stockCategory": "food"
+    },
+    {
+      "name": "food3",
+      "description": "food3 description",
+      "stockAmount": 2,
+      "costPerPackage": "67",
+      "caloriesPerPackage": 3200,
+      "stockCategory": "food"
+    },
+    {
+      "name": "water1",
+      "description": "water1 d",
+      "stockAmount": 5,
+      "costPerPackage": 1.72,
+      "millilitrePerPackage": 1000,
+      "stockCategory": "water"
+    },
+    {
+      "name": "water2",
+      "description": "water2 d",
+      "stockAmount": 15,
+      "costPerPackage": 3.12,
+      "millilitrePerPackage": 1500,
+      "stockCategory": "water"
+    },
+    {
+      "name": "water3",
+      "description": "water3 d",
+      "stockAmount": 25,
+      "costPerPackage": 4.9,
+      "millilitrePerPackage": 2000,
+      "stockCategory": "water"
+    },
+    {
+      "name": "medicine1",
+      "description": "medicine1 d",
+      "stockAmount": 24,
+      "costPerPackage": 4.82,
+      "stockCategory": "medicine"
+    },
+    {
+      "name": "medicine2",
+      "description": "medicine2 d",
+      "stockAmount": 15,
+      "costPerPackage": 8.21,
+      "stockCategory": "medicine"
+    },
+    {
+      "name": "medicine3",
+      "description": "medicine3 d",
+      "stockAmount": 7,
+      "costPerPackage": 54.96,
+      "stockCategory": "medicine"
+    },
+    {
+      "name": "weapon1",
+      "description": "weapon1 d",
+      "stockAmount": 1,
+      "costPerPackage": 1200.0,
+      "stockCategory": "weapon"
+    },
+    {
+      "name": "weapon2",
+      "description": "weapon2 d",
+      "stockAmount": 2,
+      "costPerPackage": 900.78,
+      "stockCategory": "weapon"
+    },
+    {
+      "name": "weapon3",
+      "description": "weapon3 d",
+      "stockAmount": 3,
+      "costPerPackage": 1900.78,
+      "stockCategory": "weapon"
+    }
+]

@@ -18,6 +18,7 @@ export const actions = {
     // but it finally works
   },
   async submit({ state, dispatch, commit }, fields) {
+    console.log(state.activeTab, fields);
     let stock = stockFactory(state.activeTab, fields);
 
     let result = await api.create(stock);

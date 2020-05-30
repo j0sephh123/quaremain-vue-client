@@ -25,6 +25,19 @@ class Food extends Stock {
   }
 }
 
+
+//
+// type:
+//   [food, water, medicine, weapon]
+//
+// fields: 
+//   caloriesPerPackage: 
+//   costPerPackage
+//   description
+//   millilitrePerPackage
+//   name
+//   stockAmount
+//   stockCategory [food, water, medicine, weapon]
 export const stockFactory = (type, fields) => {
   fields['stockCategory'] = type;
   let stock; 

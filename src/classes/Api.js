@@ -96,6 +96,16 @@ class API {
       alertClassName: survivalResponse.survivalAlertType,
     });
   }
+
+  async getAllStocks() {
+    const endpoint = `list/get-all-stocks`;
+    const allStocksResponse = (await axiosInstance.get(endpoint)).data;
+
+    if(allStocksResponse.status === 200) {
+      return allStocksResponse.stocks;
+    }
+    throw new Error("Error in fetching all stocks in api.getAllStocks");
+  }
 }
 
 export const api = new API();
