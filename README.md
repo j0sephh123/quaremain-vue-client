@@ -1,6 +1,6 @@
 # Quaremain's Vue Client
 
-Front-end desktop client (webview) for ![https://github.com/momozor/quaremain].
+Front-end desktop client (webview) for [quaremain](https://github.com/momozor/quaremain).
 
 ## Building & Running
 
