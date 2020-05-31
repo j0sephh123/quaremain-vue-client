@@ -13,9 +13,11 @@ export default {
     for(const stockName in stocksObject) {
       const stockValue = stocksObject[stockName];
       const sum = stockValue.reduce((initialSum, value) => {
+
+        // +value.costPerPackage? Is this relying on hidden side-effect?
         return initialSum += +value.costPerPackage;
       }, 0);
-      labels[stockName] = sum;
+      labels[stockName] = sum.toFixed(2);
     }
 
     this.renderChart({
