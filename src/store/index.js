@@ -1,10 +1,6 @@
 /* eslint-disable */
 import Vue from "vue";
 import Vuex from "vuex";
-
-
-
-
 import { state, initialUpdateObject } from "./state";
 import { getters } from "./getters";
 import { mutations } from './mutations';

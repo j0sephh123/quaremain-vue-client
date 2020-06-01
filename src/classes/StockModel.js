@@ -40,13 +40,12 @@ class Food extends Stock {
 //   stockCategory [food, water, medicine, weapon]
 export const stockFactory = (type, fields) => {
   fields['stockCategory'] = type;
-  let stock; 
-  if(type === 'food') {
-    stock = new Food(fields);
+  
+  if (type === 'food') {
+    return new Food(fields);
   } else if (type === 'water') {
-    stock = new Water(fields);
-  } else {
-    stock = new Stock(fields)
+    return new Water(fields);
   }
-  return stock;
+
+  return new Stock(fields);
 }

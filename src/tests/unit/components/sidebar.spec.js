@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import Sidebar from "../../components/Sidebar.vue";
-import store from "../../store";
-import VueRouter from 'vue-router'
+import Sidebar from "../../../components/Sidebar.vue";
+import store from "../../../store";
+import VueRouter from "vue-router";
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)

@@ -85,7 +85,7 @@ class API {
     const survivalResponse = (await axiosInstance.get(endpoint)).data;
 
     // if we don't have survival days left, we get 404, so assign it a danger class
-    if(survivalResponse.status === statusCode.notFound) {
+    if (survivalResponse.status === statusCode.notFound) {
       return ({
         text: `${survivalResponse.error}`,
         alertClassName: `danger`,
@@ -102,7 +102,7 @@ class API {
     const endpoint = `list/get-all-stocks`;
     const allStocksResponse = (await axiosInstance.get(endpoint)).data;
 
-    if(allStocksResponse.status === statusCode.success) {
+    if (allStocksResponse.status === statusCode.success) {
       return allStocksResponse.stocks;
     }
     throw new Error("Error in fetching all stocks in api.getAllStocks");
