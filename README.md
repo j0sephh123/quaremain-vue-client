@@ -16,6 +16,10 @@ Front-end desktop client (webview) for [quaremain](https://github.com/momozor/qu
 ### Build production files
 - yarn build (or npm run build)
 
+### Testing
+
+- yarn test (or npm run test)
+
 ## Maintainers
 - Author - [j0sephh123](https://github.com/j0sephh123)
 - Co-maintainer - [Momozor](https://github.com/momozor)
