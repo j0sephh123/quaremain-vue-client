@@ -23,15 +23,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     
     - run: npm install
-
-    - name: Run tests
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
     - run: npm run test
-
-    - name: Build production client code
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
     - run: npm run build
