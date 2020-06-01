@@ -22,7 +22,6 @@ describe('stockFactory', () => {
         description: 'For fever',
         stockAmount: 5,
         costPerPackage: 1.84,
-        millilitrePerPackage: 1200,
     });
 
     const weaponStock = stockFactory('weapon', {
@@ -30,7 +29,6 @@ describe('stockFactory', () => {
         description: '',
         stockAmount: 5,
         costPerPackage: 1200.99,
-        millilitrePerPackage: 1200,
     });
 
     test('food', () => {
@@ -42,7 +40,6 @@ describe('stockFactory', () => {
             'stockAmount': 5,
             'stockCategory': 'food'
         });
-        
     });
 
     test('water', () => {
