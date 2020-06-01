@@ -5,7 +5,7 @@ import router from "../router";
 
 const statusCode = {
   'success': 200,
-  'notFound': 400,
+  'notFound': 404,
 };
 
 export const actions = {
