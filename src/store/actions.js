@@ -3,6 +3,11 @@ import { api } from "../classes/Api";
 import { stockFactory } from "../classes/StockModel";
 import router from "../router";
 
+const statusCode = {
+  'success': 200,
+  'notFound': 400,
+};
+
 export const actions = {
   async loadStocks({ commit }, category) {
     commit("loadStocks", (await api.get(category)).data.stocks);
@@ -23,8 +28,8 @@ export const actions = {
 
     let result = await api.create(stock);
 
-    if (result.status === 200) {
-      let exists = result.data.status === 404;
+    if (result.status === statusCode.success) {
+      let exists = result.data.status === statusCode.notFound;
       if (!exists) {
         dispatch("loadStocks", state.activeTab);
       } else {
@@ -38,7 +43,7 @@ export const actions = {
     let result = await api.remove(id, state.activeTab);
 
     // same as submit
-    if (result.status === 200) {
+    if (result.status === statusCode.success) {
       dispatch("loadStocks", state.activeTab);
     } else {
       console.log("error loading stocks");
@@ -50,7 +55,7 @@ export const actions = {
 
     let result = await api.update(stock);
 
-    if (result.status === 200) {
+    if (result.status === statusCode.success) {
       dispatch("loadStocks", state.activeTab);
     } else {
       console.log("error");
