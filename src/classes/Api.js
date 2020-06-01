@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import axios from "axios";
 import router from "../router";
+import { statusCode } from '../constants';
 
 const port = `5000`;
 const host = `http://localhost:${port}`;
@@ -69,7 +70,7 @@ class API {
 
   async resetDatabase() {
     let { status } = (await axiosInstance.get("list/reset-database")).data;
-    if (status === 200) {
+    if (status === statusCode.success) {
       router.push({
         name: "App",
       });
@@ -84,7 +85,7 @@ class API {
     const survivalResponse = (await axiosInstance.get(endpoint)).data;
 
     // if we don't have survival days left, we get 404, so assign it a danger class
-    if(survivalResponse.status === 404) {
+    if(survivalResponse.status === statusCode.notFound) {
       return ({
         text: `${survivalResponse.error}`,
         alertClassName: `danger`,
@@ -101,7 +102,7 @@ class API {
     const endpoint = `list/get-all-stocks`;
     const allStocksResponse = (await axiosInstance.get(endpoint)).data;
 
-    if(allStocksResponse.status === 200) {
+    if(allStocksResponse.status === statusCode.success) {
       return allStocksResponse.stocks;
     }
     throw new Error("Error in fetching all stocks in api.getAllStocks");

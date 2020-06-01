@@ -1,12 +1,8 @@
 /* eslint-disable */
 import { api } from "../classes/Api";
 import { stockFactory } from "../classes/StockModel";
+import { statusCode } from "../constants";
 import router from "../router";
-
-const statusCode = {
-  'success': 200,
-  'notFound': 404,
-};
 
 export const actions = {
   async loadStocks({ commit }, category) {
