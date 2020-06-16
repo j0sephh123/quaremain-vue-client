@@ -7,6 +7,8 @@ import "./assets/bootstrap.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 // tools
+
+
 Vue.use(VueSweetalert2);
 
 // main stuff
